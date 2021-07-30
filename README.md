@@ -13,15 +13,15 @@
 
 ***
 
-A simple CSS framework designed to be used with FGUI.
+A simple CSS framework designed to be used with ultralight.
 
 	* Feature 1
 	* Feature 2
 	* Feature 3
 
-You can visit the [wiki (currently under construction)](https://github.com/otvv/malua/wiki) page for more info about the library
+You can visit the [wiki (currently under construction)](https://github.com/otvv/malua/wiki) page for more info about the framework
 
-Here is some images of the default design of the library:
+Here is some images of what you can accomplish with this framework:
 
 ![img1](repo/malua_sample_1.png)
 ![img2](repo/malua_sample_2.png)
