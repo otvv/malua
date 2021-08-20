@@ -13,7 +13,7 @@
 
 ***
 
-A simple CSS framework designed to be used with ultralight.
+A simple CSS framework designed to be used with Ultralight, Sciter, Electron or even on the web.
 
 	* Feature 1
 	* Feature 2
@@ -26,5 +26,5 @@ Here is some images of what you can accomplish with this framework:
 ![img1](repo/malua_sample_1.png)
 ![img2](repo/malua_sample_2.png)
 
-If you find bugs or glitches feel free to visit the issues tab. 
+If you find bugs, glitches or inconsistencies, feel free to visit the issues tab. 
 If you want to contribute, you can always make a pull request.
