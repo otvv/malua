@@ -7,13 +7,9 @@
     <a href="https://github.com/otvv/malua/blob/master/LICENSE"><img width="120" height="30" src="repo/license.png" alt="mit"></a>
 </p>
 
-<p align="center">
-   <a href="https://www.buymeacoffee.com/otvv"><img width="160" height="40" src="repo/sponsor.png" alt="buy me a coffe"></a>
-</p>
-
 ***
 
-A simple CSS framework designed to be used with Ultralight, Sciter, Electron or even on the web.
+A simple CSS framework designed to be used with Ultralight, Sciter, Electron or even in the web.
 
 	* Feature 1
 	* Feature 2
@@ -26,5 +22,5 @@ Here is some images of what you can accomplish with this framework:
 ![img1](repo/malua_sample_1.png)
 ![img2](repo/malua_sample_2.png)
 
-If you find bugs, glitches or inconsistencies, feel free to visit the issues tab. 
+If you find bugs or anything wrong with the code, feel free to report it at the issues tab.
 If you want to contribute, you can always make a pull request.
