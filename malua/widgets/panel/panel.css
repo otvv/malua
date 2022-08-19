@@ -1,0 +1,45 @@
+/*
+*/
+
+/*
+    panel widget geometry
+*/
+.m-panel {
+  position: absolute;
+
+  /*width: 985px;
+  height: 650px;*/
+
+  border: 1px solid var(--color-background1);
+  box-shadow: 0 10px 30px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  
+  border-radius: 8px;
+}
+
+.m-panel-header {
+  height: 60px;
+  background-color: var(--color-background3);
+  
+  border: 1px solid var(--color-background1);
+  box-shadow: 0 10px 30px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: 0px;
+
+  transition: ease-out 0.4s;
+}
+
+/*
+    panel widget state
+*/
+.m-panel-header:hover {
+  cursor: grab;
+
+  box-shadow: 0 10px 10px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  transition: ease-in 0.4s;
+}
+
+.m-panel-header:active {
+  cursor: move;
+}

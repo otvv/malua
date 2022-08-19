@@ -1,0 +1,63 @@
+/*
+*/
+
+/*
+    checkbox widget geometry
+*/
+.m-checkbox-box {
+  position: relative;
+  display: block;
+
+  width: 150px;
+  height: 25px;
+
+  margin: 15px;
+
+  padding-left: 5px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+
+  background: var(--color-background4);
+  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  
+  border-radius: 4px;
+  outline: none;
+}
+
+.m-checkbox {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--color-background4);
+  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  outline: none;
+  transition: ease-out 0.3s;
+
+  vertical-align: middle;
+}
+
+.m-checkbox-label {
+  color: var(--secondary-text);
+  font-size: 14px;
+  padding-left: 7px;
+}
+
+/*
+    checkbox widget state
+*/
+.m-checkbox:hover {
+  background: var(--color-foreground1);
+  transition: ease-in 0.2s;
+  cursor: pointer;
+}
+
+.m-checkbox:checked {
+  border: 3px solid var(--color-background4);
+  background: var(--color-foreground2);
+  transition: ease-out 0.2s;
+}
+
+.m-checkbox:checked:hover {
+  background: var(--color-foreground1);
+  transition: ease-in 0.2s;
+}

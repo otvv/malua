@@ -1,0 +1,78 @@
+/*
+*/
+
+
+/*
+    alert widget geometry
+*/
+.m-alert {
+  position: inherit;
+  display: block;
+
+  margin: 15px;
+
+  width: 450px;
+  height: 40px;
+
+  padding-top: 15px;
+  padding-left: 15px ;
+
+  background: var(--color-background1);
+  box-shadow: 1px 1px 2px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  
+  border: 1px solid var(--color-background1);
+  border-radius: 7px;
+  
+  cursor: pointer;
+}
+
+.m-alert-text {
+  color: var(--notification-text);
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px var(--color-shadow3);
+}
+
+/*
+    alert status
+*/
+.m-alert-success {
+  border-left: 7px solid var(--alert-success);
+}
+
+.m-alert-warning {
+  border-left: 7px solid var(--alert-warning);
+}
+
+.m-alert-error {
+  border-left: 7px solid var(--alert-error);
+}
+
+.m-alert-pulse {
+  border-left: 7px solid var(--alert-default);
+	animation: ease-out pulse 2s infinite;
+}
+
+/*
+    alert animations
+*/
+
+/* TODO: move this to another file */
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0), 0 1px 8px rgba(0, 0, 0, 0);
+	}
+
+	75% {
+		transform: scale(1.05);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .1), 0 1px 8px rgba(0, 0, 0, .2);
+
+	}
+
+	100% {
+		transform: scale(1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0), 0 1px 8px rgba(0, 0, 0, 0);
+    ;
+	}
+}

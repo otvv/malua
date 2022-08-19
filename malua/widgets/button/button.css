@@ -1,0 +1,46 @@
+/*
+*/
+
+/*
+    button widget geometry
+*/
+.m-button {
+  position: relative;
+  display: block;
+
+  width: 165px;
+  height: 30px;
+
+  margin: 15px;
+
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--secondary-text);
+
+  border: 1px solid var(--color-background1);
+  box-shadow: 0 10px 30px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  background: var(--color-background2);
+
+  border-radius: 4px;
+  outline: none;
+
+  transition: ease-out 0.2s;
+}
+
+/*
+    button widget state
+*/
+.m-button:hover { 
+  background-color: var(--color-foreground2);
+  color: var(--normal-text);
+  transition: ease-in 0.2s;
+  cursor: pointer;
+}
+
+.m-button:active {
+  background-color: var(--color-foreground2);
+  color: var(--secondary-text);
+  box-shadow: -2px 1px 5px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  border: 1.5px solid var(--color-foreground2);
+  cursor: wait;
+}
