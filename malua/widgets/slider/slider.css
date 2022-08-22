@@ -17,8 +17,8 @@
   padding-right: 5px;
   padding-bottom: 2px;
 
-  background: rgba(245, 245, 245, 0.7);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, .1), 0 1px 8px rgba(0, 0, 0, .2);
+  background: var(--color-background4);
+  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
   
   border-radius: 4px;
   outline: none;
@@ -29,7 +29,7 @@
   height: 5px;
   border-radius: 2px;
   background: rgba(97, 97, 97, 0.6);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, .1), 0 1px 8px rgba(0, 0, 0, .2);
+  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
   outline: none;
 }
 
@@ -37,9 +37,8 @@
   width: 12px;
   height: 12px;
   border-radius: 50%; 
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, .1), 0 1px 8px rgba(0, 0, 0, .2);
-  background: rgba(97, 97, 97, 1.0);
+  border: 2px solid var(--color-background4);
+  background: var(--color-background6);
   transition: ease-out 0.3s;
 
   -webkit-appearance: none;
@@ -49,13 +48,13 @@
     slider widget state
 */
 .m-slider::-webkit-slider-thumb:hover {
-  background: rgba(54, 54, 54, 1.0);
+  background: var(--color-background3);
   transition: ease-in 0.3s;
   cursor: pointer;
 }
 
 .m-slider::-webkit-slider-thumb:active {
-  border: 3px solid rgba(255, 255, 255, 0.7);
+  border: 3px solid var(--color-background1);
   transition: 0s;
   cursor: grabbing;
 }
@@ -67,8 +66,8 @@
   width: 12px;
   height: 12px;
   border-radius: 50%; 
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, .1), 0 1px 8px rgba(0, 0, 0, .2);
+  border: 2px solid var(--color-background4);
+  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
   background: rgba(97, 97, 97, 1.0);
   transition: ease-out 0.3s;
 }
@@ -77,13 +76,13 @@
     slider thumb state
 */
 .m-slider::-moz-range-thumb:hover {
-  background: rgba(54, 54, 54, 1.0);
+  background: var(--color-background3);
   transition: ease-in 0.3s;
   cursor: pointer;
 }
 
 .m-slider::-moz-range-thumb:active {
-  border: 3px solid rgba(255, 255, 255, 0.7);
+  border: 3px solid var(--color-background1);
   transition: 0s;
   cursor: grabbing;
 }

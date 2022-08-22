@@ -18,7 +18,28 @@
   -moz-user-drag: none;
 
   font-family: 'Open Sans', sans-serif; /* this is the font used by the framework, feel free to change it to w/e you want */
+
+  /* scrollbar styling (firefox) */
+  scrollbar-width: 7px;
+  scrollbar-color: var(--color-background2) var(--color-background6);
 }
+
+/* scrollbar styling (chrome, safari, edge, etc)*/
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-background2);
+  margin-bottom: 13px;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-background6);
+  border-radius: 5px;
+}
+
 
 /* Separators */
 hr {
@@ -29,12 +50,13 @@ hr {
 /* Colors */
 :root { 
 
-  /* TODO: clean this up */
+  /* TODO: use better names for the colors */
   --color-background1: #ffffff30;
   --color-background2: #ffffff80;
   --color-background3: #ffffff60;
   --color-background4: #f5f5f5b3;
   --color-background5: #ffffff40;
+  --color-background6: #30303079;
 
   --color-foreground1: #404040ff;
   --color-foreground2: #5f5f5f80;
@@ -73,7 +95,7 @@ hr {
   backdrop-filter: blur(10px);
   background: var(--color-background1);
 }
-.none { /* sometimes forcing a shader to be turned off might be useful */
+.none { /* sometimes forcing a shader to be turned off might be useful so the widget wont be totally transparent but instead have a nice background color in it */ 
   background: var(--color-background1);
 }
 

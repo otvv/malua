@@ -13,15 +13,15 @@
   padding-left: 5px;
   padding-right: 8px;
 
-  background: rgba(245, 245, 245, 0.7);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, .1), 0 1px 8px rgba(0, 0, 0, .2);
+  background: var(--color-background4);
+  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
 
   border-radius: 4px;
   outline: none;
   border: none;
 
-  caret-color: rgba(35, 35, 35, 1.0);
-  color: rgba(35, 35, 35, 1.0);
+  caret-color: var(--secondary-text);
+  color: var(--secondary-text);
 }
 
 .m-textbox:placeholder-shown {
@@ -30,17 +30,17 @@
 }
 
 .m-textbox:focus {
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, .2), 0 1px 8px rgba(0, 0, 0, .3);
+  box-shadow: 1px 1px 5px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
   transition: ease-in 0.2s;
 }
 
 .m-textbox:hover {
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, .2), 0 1px 8px rgba(0, 0, 0, .3);
+  box-shadow: 1px 1px 5px var(--color-shadow2), 0 1px 8px var(--color-shadow1);
   transition: ease-in 0.2s;
 }
 
 .m-textbox::placeholder {
-  color: rgba(35, 35, 35, 1.0);
+  color: var(--secondary-text);
   font-size: 14px;
   vertical-align: middle;
 }
