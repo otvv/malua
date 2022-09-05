@@ -103,13 +103,13 @@ function handleMovement(headerElement, element) {
   let elementX = 0
   let elementY = 0
 
-  function onMouseEnter(event) {
+  function onMouseEnter() {
     isMouseInside = true
   }
 
   headerElement.addEventListener('mouseenter', onMouseEnter)
 
-  function onMouseLeave(event) {
+  function onMouseLeave() {
     isMouseInside = true
   }
 
@@ -126,7 +126,7 @@ function handleMovement(headerElement, element) {
 
   headerElement.addEventListener('mousedown', onMouseDown)
 
-  function onMouseUp(event) {
+  function onMouseUp() {
 
     // reset states
     isMouseDown = false
@@ -140,11 +140,7 @@ function handleMovement(headerElement, element) {
 
   function onMouseMove(event) {
 
-    if (!isMouseDown) {
-      return;
-    }
-
-    if (!isMouseInside) {
+    if (!isMouseDown || !isMouseInside) {
       return;
     }
 

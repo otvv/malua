@@ -88,7 +88,6 @@ class MGroupBox extends HTMLElement {
     for (let i = 1; i < this.childNodes.length; i++) {
       fieldElement.appendChild(this.childNodes[i])
     }
-
   }
 }
 
