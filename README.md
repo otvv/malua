@@ -9,4 +9,4 @@
 
 <hr>
 
-A simple CSS framework designed to be used with Ultralight, Sciter, Electron or even in the web.
+A simple CSS framework designed to be used alongside Ultralight, Sciter, Electron or even in the web.
