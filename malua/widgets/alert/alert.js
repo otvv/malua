@@ -5,7 +5,7 @@
 
 class MAlert extends HTMLElement {
   constructor() {
-    // .. 
+    // ..
     super()
 
     // create shadow root
@@ -37,12 +37,12 @@ class MAlert extends HTMLElement {
 
     // alert custom shader
     const alertShader = this.hasAttribute('shader')
-    
+
     // alert custom text
     const alertText = this.hasAttribute('text')
 
     if (alertType) {
-      
+
       if (alertShader) {
         alertElement.setAttribute('class', ('m-alert ' + this.getAttribute('shader') + ' m-alert-' + this.getAttribute('type')))
       }
@@ -95,7 +95,7 @@ class MAlert extends HTMLElement {
     shadow.appendChild(globalStyleLink)
     shadow.appendChild(styleLink)
     shadow.appendChild(alertElement)
-    
+
     // hide notification when the user clicks on it
     hideAlerts()
   }
@@ -104,7 +104,7 @@ class MAlert extends HTMLElement {
 function hideAlerts() {
 
   // find all alerts
-  const alerts = document.getElementsByTagName('m-alert');
+  const alerts = document.getElementsByTagName('m-alert')
 
   // walk through all alerts
   for (let i = 0; i < alerts.length; i++) {
@@ -113,14 +113,14 @@ function hideAlerts() {
     alerts[i].onclick = function () {
 
       // set the opacity of the alert (fade out animation)
-      alerts[i].style.opacity = 0;
-      alerts[i].style.transition = 'opacity 0.8s';
+      alerts[i].style.opacity = 0
+      alerts[i].style.transition = 'opacity 0.8s'
 
-      // hide selected alert on a given time (550ms) 
-      setTimeout(function () { alerts[i].style.display = 'none'; }, 550);
+      // hide selected alert on a given time (550ms)
+      setTimeout(function () { alerts[i].style.display = 'none' }, 550)
     }
   }
 }
 
-// define the new element 
+// define the new element
 customElements.define('m-alert', MAlert)

@@ -5,8 +5,8 @@
 
 class MSlider extends HTMLElement {
   constructor() {
-    // .. 
-    super();
+    // ..
+    super()
 
     // create shadow root
     const shadow = this.attachShadow({mode: 'open'})
@@ -58,8 +58,8 @@ class MSlider extends HTMLElement {
     }
 
     // slider position
-    const sliderPosX = this.hasAttribute('x');
-    const sliderPosY = this.hasAttribute('y');
+    const sliderPosX = this.hasAttribute('x')
+    const sliderPosY = this.hasAttribute('y')
 
     if (sliderPosX) {
       sliderSpan.style.left = this.getAttribute('x')
@@ -107,5 +107,5 @@ class MSlider extends HTMLElement {
   }
 }
 
-// define the new element 
+// define the new element
 customElements.define('m-slider', MSlider)

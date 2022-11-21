@@ -5,42 +5,38 @@
     button widget geometry
 */
 .m-button {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  width: 165px;
-  height: 30px;
+  width: 95.5%;
+  height: 40px;
 
-  margin: 15px;
+  margin: 5px auto;
 
-  font-size: 13px;
   font-weight: bold;
-  color: var(--secondary-text);
+  
+  color: var(--text-color-normal);
 
-  border: 1px solid var(--color-background1);
-  box-shadow: 0 10px 30px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
-  background: var(--color-background2);
+  box-shadow: 0 0 5px 1px var(--shadow);
+  
+  background-color: var(--button-background);
+  border: 1px solid var(--button-border);
 
-  border-radius: 4px;
-  outline: none;
-
-  transition: ease-out 0.2s;
+  border-radius: 5px;
 }
 
 /*
-    button widget state
+    button widget custom states
 */
 .m-button:hover { 
-  background-color: var(--color-foreground2);
-  color: var(--normal-text);
-  transition: ease-in 0.2s;
   cursor: pointer;
 }
 
 .m-button:active {
-  background-color: var(--color-foreground2);
-  color: var(--secondary-text);
-  box-shadow: -2px 1px 5px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
-  border: 1.5px solid var(--color-foreground2);
   cursor: wait;
+
+  color: var(--text-color-title);
+
+  box-shadow: inset 0 0 5px 1px var(--colored-shadow);
 }

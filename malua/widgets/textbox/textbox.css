@@ -1,50 +1,43 @@
 /*
 */
 
+/*
+    textbox widget geometry
+*/
 .m-textbox {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  width: 150px;
+  width: 94.5%;
   height: 25px;
 
-  margin: 15px;
+  margin: 5px auto;
   
   padding-left: 5px;
-  padding-right: 8px;
+  padding-right: 5px;
 
-  background: var(--color-background4);
-  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  background: var(--textbox-background);
+  box-shadow: 0 0 5px 1px var(--shadow);
 
   border-radius: 4px;
-  outline: none;
-  border: none;
-
-  caret-color: var(--secondary-text);
-  color: var(--secondary-text);
+  
+  caret-color: var(--text-color-normal);
+  color: var(--text-color-normal);
 }
 
 .m-textbox:placeholder-shown {
   caret-color: transparent;
-  transition: ease-out 0.2s;
-}
-
-.m-textbox:focus {
-  box-shadow: 1px 1px 5px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
-  transition: ease-in 0.2s;
-}
-
-.m-textbox:hover {
-  box-shadow: 1px 1px 5px var(--color-shadow2), 0 1px 8px var(--color-shadow1);
-  transition: ease-in 0.2s;
 }
 
 .m-textbox::placeholder {
-  color: var(--secondary-text);
-  font-size: 14px;
-  vertical-align: middle;
+  color: var(--text-color-normal);
 }
 
+/*
+    button widget custom states
+*/
 .m-textbox:focus {
-  cursor: none;
+  border: 1px solid var(--textbox-border-hover);
+  box-shadow: inset 0 0 5px 1px var(--colored-shadow);
 }

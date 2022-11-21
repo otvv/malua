@@ -5,7 +5,7 @@
 
 class MTextBox extends HTMLElement {
   constructor() {
-    // .. 
+    // ..
     super()
 
     // create shadow root
@@ -33,8 +33,8 @@ class MTextBox extends HTMLElement {
     }
 
     // textbox position
-    const textboxPosX = this.hasAttribute('x');
-    const textboxPosY = this.hasAttribute('y');
+    const textboxPosX = this.hasAttribute('x')
+    const textboxPosY = this.hasAttribute('y')
 
     if (textboxPosX) {
       textboxElement.style.left = this.getAttribute('x')
@@ -79,5 +79,5 @@ class MTextBox extends HTMLElement {
   }
 }
 
-// define the new element 
+// define the new element
 customElements.define('m-textbox', MTextBox)

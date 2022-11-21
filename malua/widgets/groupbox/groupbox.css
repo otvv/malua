@@ -5,22 +5,26 @@
     groupbox widget geometry
 */
 .m-groupbox {
-  position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-basis: content;
+  align-content:space-around;
+  
   overflow-y: auto;
 
-  margin: 15px;
-  width: 380px;
-  
-  border: 1px solid var(--color-background1);
-  box-shadow: 1px 1px 2px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  margin: auto 5px;
 
-  border-radius: 5px;
+  background-color: var(--groupbox-background);
+  border: 1px solid var(--groupbox-border);
+  box-shadow: 0 0 5px 1px var(--shadow);
+  
+  border-radius: 7px;
+  
+  /* debug purposes only */
+  /* border: 2px dashed hwb(270 20% 40%); */
 }
 
 .m-groupbox-label {
-  color: var(--header-text);
-  text-shadow: 1px 1px 1px var(--color-shadow3);
-  font-size: 14px;
-  padding-left: 3px;
+  color: var(--text-color-title);
+  text-shadow: var(--font-shadow);
 }

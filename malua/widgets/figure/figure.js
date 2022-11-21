@@ -3,7 +3,7 @@
 
 'use strict'
 
-class MAvatar extends HTMLElement {
+class MFigure extends HTMLElement {
   constructor() {
     // .. 
     super()
@@ -11,28 +11,27 @@ class MAvatar extends HTMLElement {
     // create shadow root
     const shadow = this.attachShadow({ mode: 'open' })
 
-    // img wrapper
-    const imgElement = document.createElement('img')
+    // figure img wrapper
+    const figureElement = document.createElement('img')
 
-    // avatar id (variable)
-    const avatarId = (this.hasAttribute('id') || this.hasAttribute('var'))
+    // figure id (variable)
+    const figureId = (this.hasAttribute('id') || this.hasAttribute('var'))
     
-    if (avatarId) {
-      imgElement.id = (this.getAttribute('id') || this.getAttribute('var'))
+    if (figureId) {
+      figureElement.id = (this.getAttribute('id') || this.getAttribute('var'))
     }
     
     // custom class
-    // TODO: find a proper way to add more classes dynamically
-    imgElement.setAttribute('class', 'm-avatar')
+    figureElement.setAttribute('class', 'm-figure')
     
     // disable dragging
-    imgElement.setAttribute('draggable', 'false')
+    figureElement.setAttribute('draggable', 'false')
     
     // img source
     const imgSource = (this.hasAttribute('src') || this.hasAttribute('img') || this.hasAttribute('link'))
 
     if (imgSource) {
-      imgElement.src = (this.getAttribute('src') || this.getAttribute('img') || this.hasAttribute('link'))
+      figureElement.src = (this.getAttribute('src') || this.getAttribute('img') || this.hasAttribute('link'))
     }
 
     // img position
@@ -40,11 +39,11 @@ class MAvatar extends HTMLElement {
     const imgPosY = this.hasAttribute('y')
 
     if (imgPosX) {
-      imgElement.style.left = this.getAttribute('x')
+      figureElement.style.left = this.getAttribute('x')
     }
 
     if (imgPosY) {
-      imgElement.style.top = this.getAttribute('y')
+      figureElement.style.top = this.getAttribute('y')
     }
 
     // div size
@@ -52,11 +51,11 @@ class MAvatar extends HTMLElement {
     const imgHeight = this.hasAttribute('height') || this.hasAttribute('h')
 
     if (imgWidth) {
-      imgElement.style.width = this.getAttribute('width') || this.getAttribute('w')
+      figureElement.style.width = this.getAttribute('width') || this.getAttribute('w')
     }
 
     if (imgHeight) {
-      imgElement.style.height = this.getAttribute('height') || this.getAttribute('h')
+      figureElement.style.height = this.getAttribute('height') || this.getAttribute('h')
     }
 
     // apply external styles to the shadow dom
@@ -66,14 +65,14 @@ class MAvatar extends HTMLElement {
 
     const styleLink = document.createElement('link')
     styleLink.setAttribute('rel', 'stylesheet')
-    styleLink.setAttribute('href', 'malua/widgets/avatar/avatar.css')
+    styleLink.setAttribute('href', 'malua/widgets/figure/figure.css')
 
     // attach our elements to the Shadow DOM
     shadow.appendChild(globalStyleLink)
     shadow.appendChild(styleLink)
-    shadow.appendChild(imgElement)
+    shadow.appendChild(figureElement)
   }
 }
 
 // define the new element 
-customElements.define('m-avatar', MAvatar)
+customElements.define('m-figure', MFigure)

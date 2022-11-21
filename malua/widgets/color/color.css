@@ -1,0 +1,56 @@
+/*
+*/
+
+/*
+    color button widget geometry
+*/
+.m-color-box {
+  display: flex;
+  align-items: center;
+
+  width: 95%;
+  height: 25px;
+
+  margin: 5px auto;
+
+  padding-left: 5px;
+  padding-bottom: 2px;
+
+  background: var(--color-box-background);
+  box-shadow: 0 0 5px 1px var(--shadow);
+
+  border-radius: 5px;
+}
+
+.m-color {
+  width: 35px;
+  height: 15px;
+
+  background-color: var(--color-background);
+  box-shadow: 0 0 5px 1px var(--shadow);
+
+  border-radius: 3px;
+}
+
+.m-color-label {
+  padding-left: 7px;
+  color: var(--text-color-normal);
+}
+
+
+/*
+color widget custom states
+*/
+.m-color:hover {
+  cursor: pointer;
+}
+
+.m-color:disabled {
+  cursor: not-allowed;
+  background-color: var(--color-background-disabled);
+}
+
+.m-color-label:disabled {
+  cursor: not-allowed;
+  color: var(--text-color-disabled);
+}

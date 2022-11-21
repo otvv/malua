@@ -34,7 +34,7 @@ class MGroupBox extends HTMLElement {
     legendElement.setAttribute('class', 'm-groupbox-label')
 
     if (fieldsetLegend) {
-      legendElement.textContent = this.getAttribute('title');
+      legendElement.textContent = this.getAttribute('title')
     }
 
     // custom class & shaders
@@ -91,5 +91,5 @@ class MGroupBox extends HTMLElement {
   }
 }
 
-// define the new element 
+// define the new element
 customElements.define('m-groupbox', MGroupBox)

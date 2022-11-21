@@ -5,19 +5,19 @@
 
 class MCheckBox extends HTMLElement {
   constructor() {
-    // .. 
+    // ..
     super()
 
     // create shadow root
     const shadow = this.attachShadow({mode: 'open'})
 
-    // checkbox background
+    // checkbox box
     const checkboxSpan = document.createElement('span')
 
     // apply style
     checkboxSpan.setAttribute('class', 'm-checkbox-box')
 
-    // create checkbox wrapper and set its type
+    // create checkbox input wrapper and set its type
     const checkboxElement = checkboxSpan.appendChild(document.createElement('input'))
     checkboxElement.setAttribute('type', 'checkbox')
 
@@ -31,7 +31,15 @@ class MCheckBox extends HTMLElement {
     // checkbox title
     const checkboxTitle = this.hasAttribute('title')
 
-    // textbox id (variable)
+    // checkbox status
+    const checkboxStatus = this.getAttribute('status')
+
+    if (checkboxStatus === 'disabled') {
+        checkboxElement.disabled = true
+        checkboxLabel.disabled = true
+    }
+
+    // checkbox id (variable)
     const checkboxId = (this.hasAttribute('id') || this.hasAttribute('var'))
 
     if (checkboxId) {
@@ -44,8 +52,8 @@ class MCheckBox extends HTMLElement {
     }
 
     // checkbox position
-    const checkboxPosX = this.hasAttribute('x');
-    const checkboxPosY = this.hasAttribute('y');
+    const checkboxPosX = this.hasAttribute('x')
+    const checkboxPosY = this.hasAttribute('y')
 
     if (checkboxPosX) {
       checkboxLabel.style.left = this.getAttribute('x')
@@ -95,5 +103,5 @@ class MCheckBox extends HTMLElement {
   }
 }
 
-// define the new element 
+// define the new element
 customElements.define('m-checkbox', MCheckBox)

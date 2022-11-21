@@ -6,51 +6,53 @@
     alert widget geometry
 */
 .m-alert {
-  position: inherit;
-  display: block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   margin: 15px;
 
   width: 450px;
-  height: 40px;
+  height: 50px;
 
-  padding-top: 15px;
-  padding-left: 15px ;
+  padding-left: 15px;
 
-  background: var(--color-background1);
-  box-shadow: 1px 1px 2px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  background: var(--alert-box-background);
+  box-shadow:0 0 5px 1px var(--shadow);
   
-  border: 1px solid var(--color-background1);
+  border: 1px solid var(--alert-box-border);
   border-radius: 7px;
   
   cursor: pointer;
 }
 
 .m-alert-text {
-  color: var(--notification-text);
-  font-size: 14px;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px var(--color-shadow3);
+  color: var(--text-color-title);
+  text-shadow: var(--font-shadow);
 }
 
 /*
     alert status
 */
+.m-alert-default {
+  border-left: 7px solid var(--alert-box-type-default);
+}
+
 .m-alert-success {
-  border-left: 7px solid var(--alert-success);
+  border-left: 7px solid var(--alert-box-type-success);
 }
 
 .m-alert-warning {
-  border-left: 7px solid var(--alert-warning);
+  border-left: 7px solid var(--alert-box-type-warning);
 }
 
 .m-alert-error {
-  border-left: 7px solid var(--alert-error);
+  border-left: 7px solid var(--alert-box-type-error);
 }
 
 .m-alert-pulse {
-  border-left: 7px solid var(--alert-default);
-	animation: ease-out pulse 2s infinite;
+	animation: ease-in-out pulse 1.5s infinite;
+  border-left: 7px solid var(--alert-box-type-default);
 }
 
 /*
@@ -61,18 +63,16 @@
 @keyframes pulse {
 	0% {
 		transform: scale(1);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0), 0 1px 8px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 5px 1px var(--shadow);
 	}
-
+  
 	75% {
-		transform: scale(1.05);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, .1), 0 1px 8px rgba(0, 0, 0, .2);
-
+    transform: scale(1.03);
+    box-shadow: 0 0 5px 1px var(--colored-shadow-pulse);
 	}
 
 	100% {
-		transform: scale(1);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0), 0 1px 8px rgba(0, 0, 0, 0);
-    ;
+    transform: scale(1);
+    box-shadow: 0 0 5px 1px var(--shadow);
 	}
 }

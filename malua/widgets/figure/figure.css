@@ -1,0 +1,16 @@
+/*
+*/
+
+/*
+    figure widget geometry
+*/
+.m-figure {
+  position: sticky;
+
+  margin: auto auto 5px 15px;
+
+  background-color: var(--figure-frame-background);
+  box-shadow: 0 0 5px 1px var(--shadow);
+
+  border-radius: 3%;
+}

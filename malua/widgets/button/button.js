@@ -5,8 +5,8 @@
 
 class MButton extends HTMLElement {
   constructor() {
-    // .. 
-    super();
+    // ..
+    super()
 
     // create shadow root
     const shadow = this.attachShadow({mode: 'open'})
@@ -44,8 +44,8 @@ class MButton extends HTMLElement {
     }
 
     // button position
-    const buttonPosX = this.hasAttribute('x');
-    const buttonPosY = this.hasAttribute('y');
+    const buttonPosX = this.hasAttribute('x')
+    const buttonPosY = this.hasAttribute('y')
 
     if (buttonPosX) {
       buttonElement.style.left = this.getAttribute('x')
@@ -83,5 +83,5 @@ class MButton extends HTMLElement {
   }
 }
 
-// define the new element 
+// define the new element
 customElements.define('m-button', MButton)

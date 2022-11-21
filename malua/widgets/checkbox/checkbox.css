@@ -5,59 +5,59 @@
     checkbox widget geometry
 */
 .m-checkbox-box {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
 
-  width: 150px;
+  width: 95%;
   height: 25px;
 
-  margin: 15px;
+  margin: 5px auto;
 
   padding-left: 5px;
-  padding-right: 8px;
   padding-bottom: 2px;
 
-  background: var(--color-background4);
-  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
+  background: var(--checkbox-box-background);
+  box-shadow: 0 0 5px 1px var(--shadow);
   
-  border-radius: 4px;
-  outline: none;
+  border-radius: 5px;
 }
 
-.m-checkbox {
-  width: 14px;
-  height: 14px;
-  border-radius: 2px;
-  background: var(--color-background4);
-  box-shadow: 1px 1px 1px var(--color-shadow1), 0 1px 8px var(--color-shadow2);
-  outline: none;
-  transition: ease-out 0.3s;
+.m-checkbox {  
+  width: 15px;
+  height: 15px;
 
-  vertical-align: middle;
+  background-color: var(--checkbox-background);
+  box-shadow: 0 0 5px 1px var(--shadow);
+  
+  border-radius: 3px;
 }
 
 .m-checkbox-label {
-  color: var(--secondary-text);
-  font-size: 14px;
   padding-left: 7px;
+  color: var(--text-color-normal);
 }
 
+
 /*
-    checkbox widget state
+checkbox widget custom states
 */
 .m-checkbox:hover {
-  background: var(--color-foreground1);
-  transition: ease-in 0.2s;
   cursor: pointer;
+  background-color: var(--checkbox-background-hover);
 }
 
 .m-checkbox:checked {
-  border: 3px solid var(--color-background4);
-  background: var(--color-foreground2);
-  transition: ease-out 0.2s;
+  box-shadow: 0 0 2px 1px var(--colored-shadow);
+  border: 3.5px solid var(--checkbox-border-checked);
+  border-radius: 5px;
 }
 
-.m-checkbox:checked:hover {
-  background: var(--color-foreground1);
-  transition: ease-in 0.2s;
+.m-checkbox:disabled {
+  cursor: not-allowed;
+  background-color: var(--checkbox-background-disabled);
+}
+
+.m-checkbox-label:disabled {
+  cursor: not-allowed;
+  color: var(--text-color-disabled);
 }

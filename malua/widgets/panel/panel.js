@@ -5,23 +5,30 @@
 
 class MPanel extends HTMLElement {
   constructor() {
-    // .. 
+    // ..
     super()
 
     // create shadow root
     const shadow = this.attachShadow({ mode: 'open' })
 
-    // div wrapper
-    const divElement = document.createElement('main')
+    // panel element
+    const panelElement = document.createElement('main')
 
-    // div header
-    const divHeader = divElement.appendChild(document.createElement('header'))
+    // panel header
+    const panelHeader = panelElement.appendChild(document.createElement('header'))
+
+    // panel "widget area"
+    const panelUsableArea = panelElement.appendChild(document.createElement('section'))
+
+    // assign widget "usable" area class
+    panelUsableArea.setAttribute('class', 'm-panel-widget-area')
+
 
     // panel id (variable)
     const panelId = (this.hasAttribute('id') || this.hasAttribute('var'))
 
     if (panelId) {
-      divElement.id = (this.getAttribute('id') || this.getAttribute('var'))
+      panelElement.id = (this.getAttribute('id') || this.getAttribute('var'))
     }
 
     // div custom shader
@@ -30,39 +37,40 @@ class MPanel extends HTMLElement {
     // custom class & shaders
     // TODO: find a proper way to add more classes
     if (divShader) {
-      divHeader.setAttribute('class', ('m-panel-header ' + this.getAttribute('shader')))
-      divElement.setAttribute('class', ('m-panel ' + this.getAttribute('shader')))
+      panelHeader.setAttribute('class', ('m-panel-header ' + this.getAttribute('shader')))
+      panelElement.setAttribute('class', ('m-panel ' + this.getAttribute('shader')))
     }
     else {
-      divHeader.setAttribute('class', 'm-panel-header')
-      divElement.setAttribute('class', 'm-panel')
+      panelHeader.setAttribute('class', 'm-panel-header')
+      panelElement.setAttribute('class', 'm-panel')
     }
 
     // panel position
-    const divPosX = this.hasAttribute('x')
-    const divPosY = this.hasAttribute('y')
+    const panelPosX = this.hasAttribute('x')
+    const panelPosY = this.hasAttribute('y')
 
-    if (divPosX) {
-      divHeader.style.left = this.getAttribute('x')
-      divElement.style.left = this.getAttribute('x')
+    if (panelPosX) {
+      panelHeader.style.left = this.getAttribute('x')
+      panelElement.style.left = this.getAttribute('x')
+      panelUsableArea.style.left = this.getAttribute('x')
     }
 
-    if (divPosY) {
-      divHeader.style.top = this.getAttribute('y')
-      divElement.style.top = this.getAttribute('y')
+    if (panelPosY) {
+      panelHeader.style.top = this.getAttribute('y')
+      panelElement.style.top = this.getAttribute('y')
     }
 
-    // div size
-    const divWidth = this.hasAttribute('width') || this.hasAttribute('w')
-    const divHeight = this.hasAttribute('height') || this.hasAttribute('h')
+    // panel size
+    const panelWidth = this.hasAttribute('width') || this.hasAttribute('w')
+    const panelHeight = this.hasAttribute('height') || this.hasAttribute('h')
 
-    if (divWidth) {
-      divHeader.style.width = this.getAttribute('width') || this.getAttribute('w')
-      divElement.style.width = this.getAttribute('width') || this.getAttribute('w')
+    if (panelWidth) {
+      panelHeader.style.width = this.getAttribute('width') || this.getAttribute('w')
+      panelElement.style.width = this.getAttribute('width') || this.getAttribute('w')
     }
 
-    if (divHeight) {
-      divElement.style.height = this.getAttribute('height') || this.getAttribute('h')
+    if (panelHeight) {
+      panelElement.style.height = this.getAttribute('height') || this.getAttribute('h')
     }
 
     // apply external styles to the shadow dom
@@ -77,71 +85,68 @@ class MPanel extends HTMLElement {
     // attach our elements to the Shadow DOM
     shadow.appendChild(globalStyleLink)
     shadow.appendChild(styleLink)
-    shadow.appendChild(divElement)
+    shadow.appendChild(panelElement)
 
     // filter child elements
     for (let i = 1; i < this.childNodes.length; i++) {
-      divElement.appendChild(this.childNodes[i])
+      panelUsableArea.appendChild(this.childNodes[i])
     }
 
+    // TODO: fix this
+    panelUsableArea.style.top = '60px'
+    panelUsableArea.style.position = 'absolute'
+
     // make the panel draggable
-    handleMovement(divHeader, divElement)
+    handleMovement(panelHeader, panelElement)
 
     // disable right clicking
-    disableRightClick(divHeader, divElement)
+    disableRightClick(panelHeader, panelElement)
   }
 }
 
-// TODO: move this to another file
+// TODO: clean this up and maybe move it to another file
 function handleMovement(headerElement, element) {
 
   // TODO: clean this up
-  let isMouseDown = false 
+  let isMouseDown = false
   let isMouseInside = false
   let mouseX = 0
   let mouseY = 0
   let elementX = 0
   let elementY = 0
 
-  function onMouseEnter() {
-    isMouseInside = true
-  }
+  // set mouse status accordingly
+  headerElement.addEventListener('mouseenter', function () { isMouseInside = true })
+  headerElement.addEventListener('mouseleave', function () { isMouseInside = false })
 
-  headerElement.addEventListener('mouseenter', onMouseEnter)
-
-  function onMouseLeave() {
-    isMouseInside = true
-  }
-
-  headerElement.addEventListener('mouseleave', onMouseLeave)
-
-  function onMouseDown(event) {
+  function onMouseClickDown(event) {
 
     // grab current cursor position
     mouseX = event.clientX
     mouseY = event.clientY
 
+    // set click status
     isMouseDown = true
   }
 
-  headerElement.addEventListener('mousedown', onMouseDown)
+  headerElement.addEventListener('mousedown', onMouseClickDown)
 
-  function onMouseUp() {
+  function onMouseClickUp() {
 
     // reset states
     isMouseDown = false
     isMouseInside = false
 
-    elementX = parseInt(element.style.left) || 0
-    elementY = parseInt(element.style.top) || 0
+    elementX = parseInt(element.style.left)
+    elementY = parseInt(element.style.top)
   }
 
-  document.addEventListener('mouseup', onMouseUp)
+  document.addEventListener('mouseup', onMouseClickUp)
 
   function onMouseMove(event) {
 
     if (!isMouseDown || !isMouseInside) {
-      return;
+      return
     }
 
     // calcualte the delta position
@@ -158,10 +163,9 @@ function handleMovement(headerElement, element) {
 
 // TODO: move this to a nother file
 function disableRightClick(headerElement, element) {
-
-  headerElement.addEventListener('contextmenu', event => event.preventDefault());
-  element.addEventListener('contextmenu', event => event.preventDefault());
+  headerElement.addEventListener('contextmenu', event => event.preventDefault())
+  element.addEventListener('contextmenu', event => event.preventDefault())
 }
 
-// define the new element 
+// define the new element
 customElements.define('m-panel', MPanel)
