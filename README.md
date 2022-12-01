@@ -9,4 +9,6 @@
 
 <hr>
 
-A simple CSS framework designed to be used alongside Ultralight, Sciter, Electron or even in the web.
+A simple CSS framework designed to be used alongside Ultralight or Electron with game-hacking in mind, but it can be used in any web environment for any purpose.
+
+This UI framework was designed to be the spiritual successor of <a href="https://github.com/otvv/fgui">FGUI</a>, with an easier approach and more versatility.
