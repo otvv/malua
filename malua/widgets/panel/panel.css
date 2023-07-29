@@ -7,15 +7,17 @@
 .m-panel-header {
   width: 99.5%;
   height: 56px;
-  
+
   background-color: var(--header-background);
   box-shadow: 0 0 5px 1px var(--shadow);
-  
+
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  
-  /* debug purposes only */
+
+  /* DEBUG PURPOSES ONLY */
   /* border: 2px dashed rgb(255, 228, 72); */
+
+  z-index: 0;
 }
 
 /*
@@ -28,11 +30,13 @@
   background-color: var(--panel-background);
 
   box-shadow: 0 0 5px 1px var(--shadow);
-  
+
   border-radius: 8px;
 
-  /* debug purposes only */
+  /* DEBUG PURPOSES ONLY */
   /* border: 2px dashed rgb(255, 109, 72); */
+
+  z-index: 0;
 }
 
 .m-panel-widget-area {
@@ -51,8 +55,10 @@
 
   border-radius: 8px;
 
-  /* debug purposes only */
+  /* DEBUG PURPOSES ONLY */
   /* border: 2px dashed rgb(72, 75, 255); */
+
+  z-index: -1,
 }
 
 /*

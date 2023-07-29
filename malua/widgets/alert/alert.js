@@ -11,8 +11,14 @@ class MAlert extends HTMLElement {
     // create shadow root
     const shadow = this.attachShadow({ mode: 'open' })
 
+    // alert box
+    const alertSpan = document.createElement('span')
+
+    // apply style
+    alertSpan.setAttribute('class', 'm-alert-box')
+
     // alert wrapper
-    const alertElement = document.createElement('span')
+    const alertElement = alertSpan.appendChild(document.createElement('span'))
 
     // alert id (variable)
     const alertId = (this.hasAttribute('id') || this.hasAttribute('var'))
@@ -23,7 +29,6 @@ class MAlert extends HTMLElement {
     }
 
     // custom class
-    // TODO: find a proper way to add more classes dynamically
     alertElement.setAttribute('class', 'm-alert')
 
     // alert type
@@ -36,7 +41,7 @@ class MAlert extends HTMLElement {
     alertTextElement.setAttribute('class', 'm-alert-text')
 
     // alert custom shader
-    const alertShader = this.hasAttribute('shader')
+    const alertShader = (this.hasAttribute('shader') || this.hasAttribute('effect'))
 
     // alert custom text
     const alertText = this.hasAttribute('text')
@@ -44,18 +49,26 @@ class MAlert extends HTMLElement {
     if (alertType) {
 
       if (alertShader) {
-        alertElement.setAttribute('class', ('m-alert ' + this.getAttribute('shader') + ' m-alert-' + this.getAttribute('type')))
+        alertElement.classList.add(this.getAttribute('shader'), `m-alert-${this.getAttribute('type')}`)
       }
-      else {
-        alertElement.setAttribute('class', 'm-alert ' + 'm-alert-' + this.getAttribute('type'))
-      }
+
+      alertElement.classList.add(`m-alert-${this.getAttribute('type')}`)
 
       if (alertText) {
         alertTextElement.text = this.getAttribute('text')
       }
     }
     else {
-      alertElement.setAttribute('class', 'm-alert ' + this.getAttribute('shader'))
+
+      if (alertText) {
+        alertTextElement.text = this.getAttribute('text')
+      }
+
+      if (alertShader) {
+        alertElement.classList.add(this.getAttribute('shader'))
+      }
+
+      alertElement.classList.add('m-alert-default')
     }
 
     // alert position
@@ -63,23 +76,11 @@ class MAlert extends HTMLElement {
     const alertPosY = this.hasAttribute('y')
 
     if (alertPosX) {
-      alertElement.style.left = this.getAttribute('x')
+      alertSpan.style.left = this.getAttribute('x')
     }
 
     if (alertPosY) {
-      alertElement.style.top = this.getAttribute('y')
-    }
-
-    // alert size
-    const alertWidth = this.hasAttribute('width') || this.hasAttribute('w')
-    const alertHeight = this.hasAttribute('height') || this.hasAttribute('h')
-
-    if (alertWidth) {
-      alertElement.style.width = this.getAttribute('width') || this.getAttribute('w')
-    }
-
-    if (alertHeight) {
-      alertElement.style.height = this.getAttribute('height') || this.getAttribute('h')
+      alertSpan.style.top = this.getAttribute('y')
     }
 
     // apply external styles to the shadow dom
@@ -94,31 +95,27 @@ class MAlert extends HTMLElement {
     // attach our elements to the Shadow DOM
     shadow.appendChild(globalStyleLink)
     shadow.appendChild(styleLink)
-    shadow.appendChild(alertElement)
+    shadow.appendChild(alertSpan)
 
-    // hide notification when the user clicks on it
-    hideAlerts()
+    // hide alert (notification) if the user clicks on it
+    hideAlerts(alertSpan)
   }
 }
 
-function hideAlerts() {
+const hideAlerts = (alert) => {
+  // hide alerts on click
+  alert.onclick = () => {
 
-  // find all alerts
-  const alerts = document.getElementsByTagName('m-alert')
+    // set the opacity of the alert (fade out animation)
+    alert.style.opacity = 0
+    alert.style.transition = '0.35s'
 
-  // walk through all alerts
-  for (let i = 0; i < alerts.length; i++) {
-
-    // hide alerts on click
-    alerts[i].onclick = function () {
-
-      // set the opacity of the alert (fade out animation)
-      alerts[i].style.opacity = 0
-      alerts[i].style.transition = 'opacity 0.8s'
-
-      // hide selected alert on a given time (550ms)
-      setTimeout(function () { alerts[i].style.display = 'none' }, 550)
-    }
+    // hide selected alert on a given time (350ms)
+    setTimeout(() => {
+      alert.style.visibility = 'hidden'
+      alert.style.display = 'none'
+      alert.remove
+    }, 350)
   }
 }
 

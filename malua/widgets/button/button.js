@@ -21,15 +21,13 @@ class MButton extends HTMLElement {
     const buttonTitle = this.hasAttribute('title')
 
     // button custom shader
-    const buttonShader = this.hasAttribute('shader')
+    const buttonShader = (this.hasAttribute('shader') || this.hasAttribute('effect'))
 
-    // custom class & shaders
-    // TODO: find a proper way to add more classes
+    // custom class
+    buttonElement.setAttribute('class', 'm-button')
+
     if (buttonShader) {
-      buttonElement.setAttribute('class', ('m-button ' + this.getAttribute('shader')))
-    }
-    else {
-      buttonElement.setAttribute('class', 'm-button')
+      buttonElement.classList.add(this.getAttribute('shader'))
     }
 
     // button id (variable)

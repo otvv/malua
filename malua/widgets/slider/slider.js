@@ -27,15 +27,15 @@ class MSlider extends HTMLElement {
     // slider title
     const sliderTitle = this.hasAttribute('title')
 
+    if (sliderTitle) {
+      sliderElement.textContent = this.getAttribute( 'title' )
+    }
+
     // slider id (variable)
     const sliderId = (this.hasAttribute('id') || this.hasAttribute('var'))
 
     if (sliderId) {
       sliderElement.id = (this.getAttribute('id') || this.getAttribute('var'))
-    }
-
-    if (sliderTitle) {
-      sliderElement.textContent = this.getAttribute('title')
     }
 
     // slider default value

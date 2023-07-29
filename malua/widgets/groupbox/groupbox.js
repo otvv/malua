@@ -16,7 +16,7 @@ class MGroupBox extends HTMLElement {
     const fieldElement = document.createElement('fieldset')
 
     // fieldset custom shader
-    const fieldShader = this.hasAttribute('shader')
+    const fieldShader = (this.hasAttribute('shader') || this.hasAttribute('effect'))
 
     // fieldset id (variable)
     const fieldID = (this.hasAttribute('id') || this.hasAttribute('var'))
@@ -37,13 +37,11 @@ class MGroupBox extends HTMLElement {
       legendElement.textContent = this.getAttribute('title')
     }
 
-    // custom class & shaders
-    // TODO: find a proper way to add more classes
+    // custom class
+    fieldElement.setAttribute('class', 'm-groupbox')
+
     if (fieldShader) {
-      fieldElement.setAttribute('class', ('m-groupbox ' + this.getAttribute('shader')))
-    }
-    else {
-      fieldElement.setAttribute('class', 'm-groupbox')
+      fieldElement.classList.add(this.getAttribute('shader'))
     }
 
     // groupbox position

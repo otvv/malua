@@ -23,7 +23,6 @@ class MPanel extends HTMLElement {
     // assign widget "usable" area class
     panelUsableArea.setAttribute('class', 'm-panel-widget-area')
 
-
     // panel id (variable)
     const panelId = (this.hasAttribute('id') || this.hasAttribute('var'))
 
@@ -31,18 +30,16 @@ class MPanel extends HTMLElement {
       panelElement.id = (this.getAttribute('id') || this.getAttribute('var'))
     }
 
-    // div custom shader
-    const divShader = this.hasAttribute('shader')
+    // custom class
+    panelHeader.setAttribute('class', 'm-panel-header')
+    panelElement.setAttribute('class', 'm-panel')
 
-    // custom class & shaders
-    // TODO: find a proper way to add more classes
+    // div custom shader
+    const divShader = (this.hasAttribute('shader') || this.hasAttribute('effect'))
+
     if (divShader) {
-      panelHeader.setAttribute('class', ('m-panel-header ' + this.getAttribute('shader')))
-      panelElement.setAttribute('class', ('m-panel ' + this.getAttribute('shader')))
-    }
-    else {
-      panelHeader.setAttribute('class', 'm-panel-header')
-      panelElement.setAttribute('class', 'm-panel')
+      panelHeader.classList.add(this.getAttribute('shader'))
+      panelElement.classList.add(this.getAttribute('shader'))
     }
 
     // panel position
@@ -105,9 +102,8 @@ class MPanel extends HTMLElement {
 }
 
 // TODO: clean this up and maybe move it to another file
-function handleMovement(headerElement, element) {
+const handleMovement = (headerElement, element) => {
 
-  // TODO: clean this up
   let isMouseDown = false
   let isMouseInside = false
   let mouseX = 0
@@ -116,10 +112,10 @@ function handleMovement(headerElement, element) {
   let elementY = 0
 
   // set mouse status accordingly
-  headerElement.addEventListener('mouseenter', function () { isMouseInside = true })
-  headerElement.addEventListener('mouseleave', function () { isMouseInside = false })
+  headerElement.addEventListener('mouseenter', () => { isMouseInside = true })
+  headerElement.addEventListener('mouseleave', () => { isMouseInside = false })
 
-  function onMouseClickDown(event) {
+  const onMouseClickDown = (event) => {
 
     // grab current cursor position
     mouseX = event.clientX
@@ -131,7 +127,7 @@ function handleMovement(headerElement, element) {
 
   headerElement.addEventListener('mousedown', onMouseClickDown)
 
-  function onMouseClickUp() {
+  const onMouseClickUp = () => {
 
     // reset states
     isMouseDown = false
@@ -143,7 +139,7 @@ function handleMovement(headerElement, element) {
 
   document.addEventListener('mouseup', onMouseClickUp)
 
-  function onMouseMove(event) {
+  const onMouseMove = (event) => {
 
     if (!isMouseDown || !isMouseInside) {
       return
@@ -161,8 +157,8 @@ function handleMovement(headerElement, element) {
   document.addEventListener('mousemove', onMouseMove)
 }
 
-// TODO: move this to a nother file
-function disableRightClick(headerElement, element) {
+// TODO: move this to another file?
+const disableRightClick = (headerElement, element) => {
   headerElement.addEventListener('contextmenu', event => event.preventDefault())
   element.addEventListener('contextmenu', event => event.preventDefault())
 }

@@ -28,6 +28,13 @@ class MTextBox extends HTMLElement {
       textboxElement.setAttribute('placeholder', this.getAttribute('title'))
     }
 
+    // textbox default value
+    const textboxDefaultValue = (this.hasAttribute('value') || this.hasAttribute('text'))
+
+    if (textboxDefaultValue) {
+      textboxElement.value =  (this.getAttribute('value') || this.getAttribute('text'))
+    }
+
     if (textboxId) {
       textboxElement.id = (this.getAttribute('id') || this.getAttribute('var'))
     }

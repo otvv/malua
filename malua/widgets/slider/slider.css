@@ -17,7 +17,7 @@
 
   background: var(--slider-box-background);
   box-shadow: 0 0 5px 1px var(--shadow);
-  
+
   border-radius: 4px;
 }
 
@@ -34,13 +34,11 @@
 .m-slider::-webkit-slider-thumb {
   width: 14px;
   height: 14px;
-  
+
   border: 1px solid var(--slider-thumb-border);
   background: var(--slider-thumb-background);
-  
-  border-radius: 50%;
 
-  -webkit-appearance: none;
+  border-radius: 50%;
 }
 
 /*

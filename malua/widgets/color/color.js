@@ -35,6 +35,13 @@ class MColor extends HTMLElement {
       colorButtonLabel.innerText = this.getAttribute('title')
     }
 
+    // color button default value/color
+    const colorButtonDefaultValue = (this.hasAttribute('value') || this.hasAttribute('color'))
+
+    if (colorButtonDefaultValue) {
+      colorButtonElement.value = (this.getAttribute('value') || this.getAttribute('color'))
+    }
+
     // color button id (variable)
     const colorButtonId = (this.hasAttribute('id') || this.hasAttribute('var'))
 

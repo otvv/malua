@@ -39,6 +39,13 @@ class MCheckBox extends HTMLElement {
         checkboxLabel.disabled = true
     }
 
+    // checkbox default state
+    const checkboxDefaulState = (this.hasAttribute('value') || this.hasAttribute('state') || this.hasAttribute('checked'))
+
+    if (checkboxDefaulState) {
+      checkboxElement.checked = (this.getAttribute('value') || this.getAttribute('state') || this.getAttribute('checked'))
+    }
+
     // checkbox id (variable)
     const checkboxId = (this.hasAttribute('id') || this.hasAttribute('var'))
 
