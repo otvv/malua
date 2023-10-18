@@ -5,19 +5,51 @@
     panel header geometry
 */
 .m-panel-header {
-  width: 99.5%;
-  height: 56px;
+  width: fit-content;
+  height: 55px;
 
   background-color: var(--header-background);
   box-shadow: 0 0 5px 1px var(--shadow);
 
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  
 
   /* DEBUG PURPOSES ONLY */
-  /* border: 2px dashed rgb(255, 228, 72); */
+  /* border: 2px dashed rgb(255, 0, 179); */
 
   z-index: 0;
+}
+
+/* 
+    panel header image container
+*/
+.m-panel-header-image-container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 4px;
+
+  background: transparent;
+
+  width: fit-content;
+  height: 45px;
+
+  /* DEBUG PURPOSES ONLY */
+  /* border: 2px dashed rgb(251, 255, 0); */
+}
+
+/*
+    panel header label
+*/
+.m-panel-header-label {
+  color: var(--text-color-title);
+  text-shadow: var(--font-shadow);
+
+  padding-left:10px;
+  font-size: 14px;
 }
 
 /*
@@ -32,9 +64,9 @@
   box-shadow: 0 0 5px 1px var(--shadow);
 
   border-radius: 8px;
-
+  
   /* DEBUG PURPOSES ONLY */
-  /* border: 2px dashed rgb(255, 109, 72); */
+  /* border: 2px dashed rgb(0, 0, 0); */
 
   z-index: 0;
 }
@@ -46,20 +78,20 @@
   flex-wrap: wrap;
   align-items: flex-start;
 
-  /* prolly redundant cause i'm setting it globally on the file body but still, better be safe than sorry (im talking to you ultralight) */
+  /* prolly redundant cause i'm setting it globally on the file body but still,
+  better be safe than sorry _(im talking to you ultralight)_ */
   overflow-x: auto;
   overflow-y: auto;
 
-  width: 99.5%;
-  height: 89.5%;
-
-  border-radius: 8px;
+  width: fit-content;
+  height: fit-content;
 
   /* DEBUG PURPOSES ONLY */
-  /* border: 2px dashed rgb(72, 75, 255); */
+  /* border: 2px dashed rgb(0, 255, 64); */
 
   z-index: -1,
 }
+
 
 /*
     panel header custom states

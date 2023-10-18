@@ -4,73 +4,56 @@
 'use strict'
 
 class MFigure extends HTMLElement {
+
+  // @brief: this function will check if a certain attribute exists 
+  // in the widget context and if it exists, it will set that attribute accordingly
+  //
+  // @arguments: `element` = element to set the attribute
+  //             `attributeName` = attribute to check if it exists, in case it does, apply its value
+  //             (the value that will be aplied to the attribute is the same that the user provided when "declaring"
+  //              the element in the html root page.)
+  setAttributeWhenPresent = (element, attributeName) => {
+    const attributeValue = this.getAttribute(attributeName);
+    
+    // only set attribute if the user has set a value to it
+    if (attributeValue) {
+      element.setAttribute(attributeName, attributeValue);
+    }
+  }
+
+  // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // .. 
     super()
 
     // create shadow root
-    const shadow = this.attachShadow({ mode: 'open' })
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.innerHTML = `
+          <link rel="stylesheet" href="malua/malua.css">
+          <link rel="stylesheet" href="malua/widgets/figure/figure.css">
+          <img class="m-figure" />
+        `;
 
     // figure img wrapper
-    const figureElement = document.createElement('img')
+    const figureElement = shadow.querySelector('img')
 
-    // figure id (variable)
-    const figureId = (this.hasAttribute('id') || this.hasAttribute('var'))
+    // list of attributes to look for
+    const attributesToSet = ['id', 'src', 'alt', 'x', 'y', 'top', 'left', 'width', 'height', 'draggable', 'radius'];
     
-    if (figureId) {
-      figureElement.id = (this.getAttribute('id') || this.getAttribute('var'))
-    }
+    // set attributes if present
+    attributesToSet.forEach((attribute) => {
+      this.setAttributeWhenPresent(figureElement, attribute);
+    });
     
-    // custom class
-    figureElement.setAttribute('class', 'm-figure')
-    
-    // disable dragging
+    // disable dragging by default
     figureElement.setAttribute('draggable', 'false')
     
-    // img source
-    const imgSource = (this.hasAttribute('src') || this.hasAttribute('img') || this.hasAttribute('link'))
+    // set border radius
+    figureElement.style.borderRadius = this.getAttribute('radius');
 
-    if (imgSource) {
-      figureElement.src = (this.getAttribute('src') || this.getAttribute('img') || this.hasAttribute('link'))
-    }
-
-    // img position
-    const imgPosX = this.hasAttribute('x')
-    const imgPosY = this.hasAttribute('y')
-
-    if (imgPosX) {
-      figureElement.style.left = this.getAttribute('x')
-    }
-
-    if (imgPosY) {
-      figureElement.style.top = this.getAttribute('y')
-    }
-
-    // div size
-    const imgWidth = this.hasAttribute('width') || this.hasAttribute('w')
-    const imgHeight = this.hasAttribute('height') || this.hasAttribute('h')
-
-    if (imgWidth) {
-      figureElement.style.width = this.getAttribute('width') || this.getAttribute('w')
-    }
-
-    if (imgHeight) {
-      figureElement.style.height = this.getAttribute('height') || this.getAttribute('h')
-    }
-
-    // apply external styles to the shadow dom
-    const globalStyleLink = document.createElement('link')
-    globalStyleLink.setAttribute('rel', 'stylesheet')
-    globalStyleLink.setAttribute('href', 'malua/malua.css')
-
-    const styleLink = document.createElement('link')
-    styleLink.setAttribute('rel', 'stylesheet')
-    styleLink.setAttribute('href', 'malua/widgets/figure/figure.css')
-
-    // attach our elements to the Shadow DOM
-    shadow.appendChild(globalStyleLink)
-    shadow.appendChild(styleLink)
-    shadow.appendChild(figureElement)
+    // set figure pos
+    figureElement.style.left = this.getAttribute('x') || this.getAttribute('left')
+    figureElement.style.top = this.getAttribute('y') || this.getAttribute('top')
   }
 }
 

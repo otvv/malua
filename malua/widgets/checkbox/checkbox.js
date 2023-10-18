@@ -4,109 +4,79 @@
 'use strict'
 
 class MCheckBox extends HTMLElement {
+
+  // @brief: this function will check if a certain attribute exists 
+  // in the widget context and if it exists, it will set that attribute accordingly
+  //
+  // @arguments: `element` = element to set the attribute
+  //             `attributeName` = attribute to check if it exists, in case it does, apply its value
+  //             (the value that will be aplied to the attribute is the same that the user provided when "declaring"
+  //              the element in the html root page.)
+  setAttributeWhenPresent = (element, attributeName) => {
+    const attributeValue = this.getAttribute(attributeName);
+    
+    // only set attribute if the user has set a value to it
+    if (attributeValue) {
+      element.setAttribute(attributeName, attributeValue);
+    }
+  }
+
+  // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
     super()
 
     // create shadow root
-    const shadow = this.attachShadow({mode: 'open'})
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.innerHTML = `
+          <link rel="stylesheet" href="malua/malua.css">
+          <link rel="stylesheet" href="malua/widgets/checkbox/checkbox.css">
+          <div class="m-checkbox-box">
+          <input class="m-checkbox" type="checkbox">
+          <label class="m-checkbox-label"></label>
+          </div>
+        `;
 
-    // checkbox box
-    const checkboxSpan = document.createElement('span')
 
-    // apply style
-    checkboxSpan.setAttribute('class', 'm-checkbox-box')
+    // checkbox input wrapper and box div
+    const checkboxElement = shadow.querySelector('input')
+    const boxDivElement = shadow.querySelector('div')
 
-    // create checkbox input wrapper and set its type
-    const checkboxElement = checkboxSpan.appendChild(document.createElement('input'))
-    checkboxElement.setAttribute('type', 'checkbox')
+    // checkbox input title
+    const checkboxLabelElement = shadow.querySelector('label')
 
-    // checkbox label
-    const checkboxLabel = checkboxSpan.appendChild(document.createElement('label'))
-
-    // apply checkbox classes
-    checkboxElement.setAttribute('class', 'm-checkbox')
-    checkboxLabel.setAttribute('class', 'm-checkbox-label')
-
-    // checkbox title
-    const checkboxTitle = this.hasAttribute('title')
-
-    // checkbox status
-    const checkboxStatus = this.getAttribute('status')
-
-    if (checkboxStatus === 'disabled') {
-        checkboxElement.disabled = true
-        checkboxLabel.disabled = true
+     // list of attributes to look for
+     const attributesToSet = ['title', 'id', 'placeholder', 'disabled', 'padding', 'x', 'y', 'top', 'left', 'width', 'height'];
+    
+     // set attributes if present
+     attributesToSet.forEach((attribute) => {
+       this.setAttributeWhenPresent(checkboxElement, attribute);
+     });
+    
+    // checkbox title and string attribution
+    checkboxLabelElement.textContent = checkboxElement.title;
+    
+    if (checkboxElement.id.length > 0) {
+      checkboxLabelElement.setAttribute('for', checkboxElement.id);
     }
 
-    // checkbox default state
-    const checkboxDefaulState = (this.hasAttribute('value') || this.hasAttribute('state') || this.hasAttribute('checked'))
-
-    if (checkboxDefaulState) {
-      checkboxElement.checked = (this.getAttribute('value') || this.getAttribute('state') || this.getAttribute('checked'))
+    // set default state
+    // TODO: clean this up
+    if (this.getAttribute('checked') === 'true' || this.getAttribute('checked') === 'checked' 
+    || (this.getAttribute('state') === 'true' || this.getAttribute('state') === 'checked')) {
+      checkboxElement.click();
+      checkboxElement.checked = true;
+    } else {
+      checkboxElement.checked = false
     }
 
-    // checkbox id (variable)
-    const checkboxId = (this.hasAttribute('id') || this.hasAttribute('var'))
+    // set div box size
+    boxDivElement.style.width = this.getAttribute('width')
+    boxDivElement.style.height = this.getAttribute('height')
 
-    if (checkboxId) {
-      checkboxElement.id = (this.getAttribute('id') || this.getAttribute('var'))
-      checkboxLabel.setAttribute('for', (this.getAttribute('id') || this.getAttribute('var')))
-    }
-
-    if (checkboxTitle) {
-      checkboxLabel.innerText = this.getAttribute('title')
-    }
-
-    // checkbox position
-    const checkboxPosX = this.hasAttribute('x')
-    const checkboxPosY = this.hasAttribute('y')
-
-    if (checkboxPosX) {
-      checkboxLabel.style.left = this.getAttribute('x')
-      checkboxSpan.style.left = this.getAttribute('x')
-      checkboxElement.style.left = this.getAttribute('x')
-    }
-
-    if (checkboxPosY) {
-      checkboxLabel.style.top = this.getAttribute('y')
-      checkboxSpan.style.top = this.getAttribute('y')
-      checkboxElement.style.top = this.getAttribute('y')
-    }
-
-    // padding
-    const checkboxPadding = this.hasAttribute('padding')
-
-    if (checkboxPadding) {
-      checkboxLabel.style.padding = this.getAttribute('padding')
-      checkboxSpan.style.padding = this.getAttribute('padding')
-    }
-
-    // checkbox size
-    const checkboxWidth = this.hasAttribute('width') || this.hasAttribute('w')
-    const checkboxHeight = this.hasAttribute('height') || this.hasAttribute('h')
-
-    if (checkboxWidth) {
-      checkboxSpan.style.width = this.getAttribute('width') || this.getAttribute('w')
-    }
-
-    if (checkboxHeight) {
-      checkboxSpan.style.height = this.getAttribute('height') || this.getAttribute('h')
-    }
-
-    // apply external styles to the shadow dom
-    const globalStyleLink = document.createElement('link')
-    globalStyleLink.setAttribute('rel', 'stylesheet')
-    globalStyleLink.setAttribute('href', 'malua/malua.css')
-
-    const styleLink = document.createElement('link')
-    styleLink.setAttribute('rel', 'stylesheet')
-    styleLink.setAttribute('href', 'malua/widgets/checkbox/checkbox.css')
-
-    // attach our elements to the Shadow DOM
-    shadow.appendChild(globalStyleLink)
-    shadow.appendChild(styleLink)
-    shadow.appendChild(checkboxSpan)
+    // set div box pos
+    boxDivElement.style.left = this.getAttribute('x') || this.getAttribute('left')
+    boxDivElement.style.top = this.getAttribute('y') || this.getAttribute('top')
   }
 }
 

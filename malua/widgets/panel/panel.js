@@ -4,100 +4,111 @@
 'use strict'
 
 class MPanel extends HTMLElement {
+
+  // @brief: this function will check if a certain attribute exists 
+  // in the widget context and if it exists, it will set that attribute accordingly
+  //
+  // @arguments: `element` = element to set the attribute
+  //             `attributeName` = attribute to check if it exists, in case it does, apply its value
+  //             (the value that will be aplied to the attribute is the same that the user provided when "declaring"
+  //              the element in the html root page.)
+  setAttributeWhenPresent = (element, attributeName) => {
+    const attributeValue = this.getAttribute(attributeName);
+    
+    // only set attribute if the user has set a value to it
+    if (attributeValue) {
+      element.setAttribute(attributeName, attributeValue);
+    }
+  }
+
+  // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
     super()
 
     // create shadow root
     const shadow = this.attachShadow({ mode: 'open' })
+    shadow.innerHTML = `
+          <link rel="stylesheet" href="malua/malua.css">
+          <link rel="stylesheet" href="malua/widgets/panel/panel.css">
+          <link rel="stylesheet" href="malua/widgets/figure/figure.css">
+          <main class="m-panel">
+          <header class="m-panel-header">
+          <span class='m-panel-header-image-container'>
+          <img class='m-figure'></img>
+          <a class="m-panel-header-label"></a>
+          </span>
+          </header>
+          <section class="m-panel-widget-area">
+          </section>
+          </main>
+        `;
 
-    // panel element
-    const panelElement = document.createElement('main')
+    // panel element and title wrapper
+    const panelElement = shadow.querySelector('main')
+    const panelLabelElement = shadow.querySelector('a')
 
-    // panel header
-    const panelHeader = panelElement.appendChild(document.createElement('header'))
+    // panel header and widget area
+    const panelHeaderElement = shadow.querySelector('header')
+    const panelWidgetArea = shadow.querySelector('section')
 
-    // panel "widget area"
-    const panelUsableArea = panelElement.appendChild(document.createElement('section'))
+    // panel image wrapper
+    const panelImageElement = shadow.querySelector('img')
 
-    // assign widget "usable" area class
-    panelUsableArea.setAttribute('class', 'm-panel-widget-area')
+    // list of attributes to look for
+    const attributesToSet = ['title', 'id', 'src', 'shader', 'effect', 'x', 'y', 'top', 'left', 'width', 'height'];
 
-    // panel id (variable)
-    const panelId = (this.hasAttribute('id') || this.hasAttribute('var'))
+    // set attributes if present
+    attributesToSet.forEach((attribute) => {
+      this.setAttributeWhenPresent(panelElement, attribute);
+    });
 
-    if (panelId) {
-      panelElement.id = (this.getAttribute('id') || this.getAttribute('var'))
+    // set panel title
+    panelLabelElement.textContent = panelElement.title;
+
+    // set panel size
+    panelElement.style.width = this.getAttribute('width') || 'fit-content'
+    panelElement.style.height = this.getAttribute('height')
+
+    // NOTE: these are fixed values because of artistic reasons,
+    // feel free to change these when creating another design
+    {
+      // set panel image size
+      panelImageElement.style.width = '45px';
+      panelImageElement.style.height = '45px';
+
+      // set panel image radius
+      panelImageElement.style.borderRadius = '50%'
+
+      // set panel widget area initial position
+      panelWidgetArea.style.top = '60px'
+      panelWidgetArea.style.position = 'absolute'
     }
 
-    // custom class
-    panelHeader.setAttribute('class', 'm-panel-header')
-    panelElement.setAttribute('class', 'm-panel')
+    // set panel image source
+    panelImageElement.src = this.getAttribute('src')
 
-    // div custom shader
-    const divShader = (this.hasAttribute('shader') || this.hasAttribute('effect'))
+    // set panel header and widget area size
+    panelHeaderElement.style.width = this.getAttribute('width') || 'fit-content';
 
-    if (divShader) {
-      panelHeader.classList.add(this.getAttribute('shader'))
-      panelElement.classList.add(this.getAttribute('shader'))
-    }
+    // set panel pos
+    panelElement.style.left = this.getAttribute('x') || this.getAttribute('left')
+    panelElement.style.top = this.getAttribute('y') || this.getAttribute('top')
 
-    // panel position
-    const panelPosX = this.hasAttribute('x')
-    const panelPosY = this.hasAttribute('y')
+    // set panel shader
+    panelElement.classList.add(this.getAttribute('shader') || this.getAttribute('effect'))
 
-    if (panelPosX) {
-      panelHeader.style.left = this.getAttribute('x')
-      panelElement.style.left = this.getAttribute('x')
-      panelUsableArea.style.left = this.getAttribute('x')
-    }
-
-    if (panelPosY) {
-      panelHeader.style.top = this.getAttribute('y')
-      panelElement.style.top = this.getAttribute('y')
-    }
-
-    // panel size
-    const panelWidth = this.hasAttribute('width') || this.hasAttribute('w')
-    const panelHeight = this.hasAttribute('height') || this.hasAttribute('h')
-
-    if (panelWidth) {
-      panelHeader.style.width = this.getAttribute('width') || this.getAttribute('w')
-      panelElement.style.width = this.getAttribute('width') || this.getAttribute('w')
-    }
-
-    if (panelHeight) {
-      panelElement.style.height = this.getAttribute('height') || this.getAttribute('h')
-    }
-
-    // apply external styles to the shadow dom
-    const globalStyleLink = document.createElement('link')
-    globalStyleLink.setAttribute('rel', 'stylesheet')
-    globalStyleLink.setAttribute('href', 'malua/malua.css')
-
-    const styleLink = document.createElement('link')
-    styleLink.setAttribute('rel', 'stylesheet')
-    styleLink.setAttribute('href', 'malua/widgets/panel/panel.css')
-
-    // attach our elements to the Shadow DOM
-    shadow.appendChild(globalStyleLink)
-    shadow.appendChild(styleLink)
-    shadow.appendChild(panelElement)
 
     // filter child elements
     for (let i = 1; i < this.childNodes.length; i++) {
-      panelUsableArea.appendChild(this.childNodes[i])
+      panelWidgetArea.appendChild(this.childNodes[i])
     }
 
-    // TODO: fix this
-    panelUsableArea.style.top = '60px'
-    panelUsableArea.style.position = 'absolute'
-
     // make the panel draggable
-    handleMovement(panelHeader, panelElement)
+    handleMovement(panelHeaderElement, panelElement)
 
     // disable right clicking
-    disableRightClick(panelHeader, panelElement)
+    disableRightClick(panelHeaderElement, panelElement)
   }
 }
 

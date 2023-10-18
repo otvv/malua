@@ -4,118 +4,106 @@
 'use strict'
 
 class MAlert extends HTMLElement {
+  
+  // @brief: this function will check if a certain attribute exists 
+  // in the widget context and if it exists, it will set that attribute accordingly
+  //
+  // @arguments: `element` = element to set the attribute
+  //             `attributeName` = attribute to check if it exists, in case it does, apply its value
+  //             (the value that will be aplied to the attribute is the same that the user provided when "declaring"
+  //              the element in the html root page.)
+  setAttributeWhenPresent = (element, attributeName) => {
+    const attributeValue = this.getAttribute(attributeName);
+      
+    // only set attribute if the user has set a value to it
+    if (attributeValue) {
+      element.setAttribute(attributeName, attributeValue);
+    }
+  }
+
+  // @brief: this function will checks for clicks around the area of the alert
+  // after a click is registered it will proceed to hide it with a little fade-out animation
+  // @arguments: `alertElement` = alert element wrapper 
+  hideAlerts = (element) => {
+    // hide alerts on click
+    element.onclick = () => {
+  
+      // set the opacity of the alert (fade out animation)
+      element.style.opacity = 0
+      element.style.transition = '0.35s'
+  
+      // hide selected alert on a given time (350ms)
+      setTimeout(() => {
+        element.style.visibility = 'hidden'
+        element.style.display = 'none'
+        element.remove
+      }, 350)
+    }
+  }
+
+  // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
     super()
 
     // create shadow root
-    const shadow = this.attachShadow({ mode: 'open' })
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.innerHTML = `
+    <link rel="stylesheet" href="malua/malua.css">
+    <link rel="stylesheet" href="malua/widgets/alert/alert.css">
+    <div class="m-alert-box">
+      <span class="m-alert">
+      <a class="m-alert-label"></a>
+      </span>
+    </div>
+  `;
 
-    // alert box
-    const alertSpan = document.createElement('span')
+    // alert span wrapper
+    const alertSpanElement = shadow.querySelector('span')
 
-    // apply style
-    alertSpan.setAttribute('class', 'm-alert-box')
+    // alert text wrapper
+    const alertLabelElement = shadow.querySelector('a')
+    
+    // list of attributes to look for
+    const attributesToSet = ['text', 'id', 'shader', 'effect', 'x', 'y', 'top', 'left', 'width', 'height'];
 
-    // alert wrapper
-    const alertElement = alertSpan.appendChild(document.createElement('span'))
+    // set attributes if present
+    attributesToSet.forEach((attribute) => {
+      this.setAttributeWhenPresent(alertLabelElement, attribute);
+    });
+    
+    // set alert size
+    alertSpanElement.style.width = this.getAttribute('width')
+    alertSpanElement.style.height = this.getAttribute('height')
 
-    // alert id (variable)
-    const alertId = (this.hasAttribute('id') || this.hasAttribute('var'))
+    // set alert pos
+    alertSpanElement.style.left = this.getAttribute('x') || this.getAttribute('left')
+    alertSpanElement.style.top = this.getAttribute('y') || this.getAttribute('top')
+    
+    // handle different types of alerts
+    if (this.hasAttribute('type')) {
+      
+      // set alert shader
+      if (this.hasAttribute('shader') || this.hasAttribute('effect')) {
+        alertSpanElement.classList.add(this.getAttribute('shader') || this.getAttribute('effect'), `m-alert-${this.getAttribute('type')}`)
+      }
+      // set alert type
+      alertSpanElement.classList.add(`m-alert-${this.getAttribute('type')}`)
 
-    if (alertId) {
-      alertElement.id = (this.getAttribute('id') || this.getAttribute('var'))
-      alertTextElement.setAttribute('for', (this.getAttribute('id') || this.getAttribute('var')))
-    }
-
-    // custom class
-    alertElement.setAttribute('class', 'm-alert')
-
-    // alert type
-    const alertType = (this.hasAttribute('type'))
-
-    // alert text
-    const alertTextElement = alertElement.appendChild(document.createElement('a'))
-
-    // alert text class
-    alertTextElement.setAttribute('class', 'm-alert-text')
-
-    // alert custom shader
-    const alertShader = (this.hasAttribute('shader') || this.hasAttribute('effect'))
-
-    // alert custom text
-    const alertText = this.hasAttribute('text')
-
-    if (alertType) {
-
-      if (alertShader) {
-        alertElement.classList.add(this.getAttribute('shader'), `m-alert-${this.getAttribute('type')}`)
+    } else {
+      
+      if (this.hasAttribute('shader') || this.hasAttribute('effect')) {
+        alertSpanElement.classList.add(this.getAttribute('shader') || this.getAttribute('effect'))
       }
 
-      alertElement.classList.add(`m-alert-${this.getAttribute('type')}`)
-
-      if (alertText) {
-        alertTextElement.text = this.getAttribute('text')
-      }
+      alertSpanElement.classList.add('m-alert-default')
     }
-    else {
-
-      if (alertText) {
-        alertTextElement.text = this.getAttribute('text')
-      }
-
-      if (alertShader) {
-        alertElement.classList.add(this.getAttribute('shader'))
-      }
-
-      alertElement.classList.add('m-alert-default')
-    }
-
-    // alert position
-    const alertPosX = this.hasAttribute('x')
-    const alertPosY = this.hasAttribute('y')
-
-    if (alertPosX) {
-      alertSpan.style.left = this.getAttribute('x')
-    }
-
-    if (alertPosY) {
-      alertSpan.style.top = this.getAttribute('y')
-    }
-
-    // apply external styles to the shadow dom
-    const globalStyleLink = document.createElement('link')
-    globalStyleLink.setAttribute('rel', 'stylesheet')
-    globalStyleLink.setAttribute('href', 'malua/malua.css')
-
-    const styleLink = document.createElement('link')
-    styleLink.setAttribute('rel', 'stylesheet')
-    styleLink.setAttribute('href', 'malua/widgets/alert/alert.css')
-
-    // attach our elements to the Shadow DOM
-    shadow.appendChild(globalStyleLink)
-    shadow.appendChild(styleLink)
-    shadow.appendChild(alertSpan)
-
+    
+    // set alert text
+    alertLabelElement.textContent = this.getAttribute('text')
+    
     // hide alert (notification) if the user clicks on it
-    hideAlerts(alertSpan)
-  }
-}
-
-const hideAlerts = (alert) => {
-  // hide alerts on click
-  alert.onclick = () => {
-
-    // set the opacity of the alert (fade out animation)
-    alert.style.opacity = 0
-    alert.style.transition = '0.35s'
-
-    // hide selected alert on a given time (350ms)
-    setTimeout(() => {
-      alert.style.visibility = 'hidden'
-      alert.style.display = 'none'
-      alert.remove
-    }, 350)
+    this.hideAlerts(alertSpanElement)
   }
 }
 

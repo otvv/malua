@@ -12,11 +12,11 @@
   border: none;
   outline: none;
 
-  box-sizing: 0 0;
+  box-sizing: unset;
 
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -25,10 +25,11 @@
   -webkit-user-drag: none;
   -moz-user-drag: none;
 
-  user-zoom: none;
+  user-zoom:fixed;
 
-  font-family: 'Segoe UI', sans-serif; /* this is the font used by the framework, feel free to change it to w/e you want */
-  font-size: 14px; /* framework font size */
+  /* Font settings */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
   font-weight: var(--font-normal);
 }
 
@@ -43,34 +44,35 @@ hr {
   box-shadow: 0 0 5px 1px var(--shadow);
 }
 
-/* Colors */
+/* Colors and settings */
 :root {
   /* font weight */
   --font-light: 100;
   --font-normal: 400;
+  --font-semi-bold: 600;
   --font-bold: 700;
 
-  /* font flags */
-  --font-shadow: 1px 1px var(--text-shadow);
+  /* custom font flags */
+  --font-shadow: -2px 1px var(--text-shadow);
   --font-outline: -webkit-text-stroke: 1.5px var(--text-outline);
 
-  /* separators */
+  /* separator colors */
   --separator-border: #41414199;
 
-  /* text colors and settings */
-  --text-color-title: #e7e7e7;
+  /* text colors */
+  --text-color-title: #ffffff;
   --text-color-normal: #252525ff;
   --text-color-accent: #9ee763;
   --text-color-disabled: #6e6e6e;
-
+  
   /* text flags */
   --text-outline: #242424;
   --text-warning: #9c9340;
-  --text-shadow: #3a3a3a;
+  --text-shadow: #020202;
 
   /* shadows */
   --shadow: #45454580;
-  --colored-shadow: #b9ff77c0;
+  --colored-shadow: #8fb46cc0;
   --colored-shadow-pulse: #8ecc549c;
 
   /* panel and header colors */
@@ -84,15 +86,15 @@ hr {
 
   /* button widget colors */
   --button-background: #ffffff85;
-  --button-border: #41414199;
-  --button-border-active: #9c9c9cb9;
+  --button-border: #6d6d6d;
+  --button-border-active: #3b3b3bb9;
 
   /* checkbox widget colors */
   --checkbox-box-background: #ffffff85;
   --checkbox-background: #ffffff9c;
   --checkbox-background-disabled: #5c5c5c9c;
   --checkbox-background-hover: #69696944;
-  --checkbox-border-checked: #2525259d;
+  --checkbox-background-checked: #a8da79d2;
 
   /* alert widget colors */
   --alert-box-background: #bdbdbd3f;
@@ -117,7 +119,7 @@ hr {
   --textbox-background: #ffffff85;
   --textbox-border-hover: #9c9c9cb9;
 
-  /* colorpicker widget colors */
+  /* color-picker widget colors */
   --color-box-background: #ffffff85;
   --color-background: #ffffff9c;
   --color-background-disabled: #5c5c5c9c;

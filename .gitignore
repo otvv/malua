@@ -4,3 +4,4 @@ malua/.vscode/
 malua/node_modules/
 .env
 malua/*.html
+*.html

@@ -34,7 +34,7 @@
   z-index: 9999;
 }
 
-.m-alert-text {
+.m-alert-label {
   color: var(--text-color-title);
   text-shadow: var(--font-shadow);
 }

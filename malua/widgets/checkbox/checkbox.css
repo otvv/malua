@@ -8,28 +8,30 @@
   display: flex;
   align-items: center;
 
-  width: 95%;
-  height: 25px;
+  width: 85%;
+  height: 23px;
 
   margin: 5px auto;
 
   padding-left: 5px;
   padding-bottom: 2px;
 
-  background: var(--checkbox-box-background);
+  background-color: var(--checkbox-box-background);
   box-shadow: 0 0 5px 1px var(--shadow);
   
   border-radius: 5px;
 }
 
 .m-checkbox {  
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
 
   background-color: var(--checkbox-background);
   box-shadow: 0 0 5px 1px var(--shadow);
+
+  margin-left: 5px;
   
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .m-checkbox-label {
@@ -39,25 +41,35 @@
 
 
 /*
-checkbox widget custom states
+    checkbox widget custom states
 */
 .m-checkbox:hover {
   cursor: pointer;
+
+  width: 9px;
+  height: 9px;
+
+  border: 2px solid var(--checkbox-background);
   background-color: var(--checkbox-background-hover);
 }
 
 .m-checkbox:checked {
-  box-shadow: 0 0 2px 1px var(--colored-shadow);
-  border: 3.5px solid var(--checkbox-border-checked);
-  border-radius: 5px;
+
+  width: 9px;
+  height: 9px;
+
+  border: 2px solid var(--checkbox-background);
+  background-color: var(--checkbox-background-checked);
 }
 
 .m-checkbox:disabled {
   cursor: not-allowed;
+
   background-color: var(--checkbox-background-disabled);
 }
 
 .m-checkbox-label:disabled {
   cursor: not-allowed;
+
   color: var(--text-color-disabled);
 }

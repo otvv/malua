@@ -4,85 +4,58 @@
 'use strict'
 
 class MTextBox extends HTMLElement {
+
+  // @brief: this function will check if a certain attribute exists 
+  // in the widget context and if it exists, it will set that attribute accordingly
+  //
+  // @arguments: `element` = element to set the attribute
+  //             `attributeName` = attribute to check if it exists, in case it does, apply its value
+  //             (the value that will be aplied to the attribute is the same that the user provided when "declaring"
+  //              the element in the html root page.)
+  setAttributeWhenPresent = (element, attributeName) => {
+    const attributeValue = this.getAttribute(attributeName);
+    
+    // only set attribute if the user has set a value to it
+    if (attributeValue) {
+      element.setAttribute(attributeName, attributeValue);
+    }
+  }
+
+  // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
     super()
 
     // create shadow root
-    const shadow = this.attachShadow({mode: 'open'})
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.innerHTML = `
+          <link rel="stylesheet" href="malua/malua.css">
+          <link rel="stylesheet" href="malua/widgets/textbox/textbox.css">
+          <input class="m-textbox" type="text">
+        `;
 
-    // input wrapper
-    const textboxElement = document.createElement('input')
+    // text input wrapper
+    const textboxElement = shadow.querySelector('input')
 
-    // apply textbox class and type
-    textboxElement.setAttribute('class', 'm-textbox')
-    textboxElement.setAttribute('type', 'text')
+    // list of attributes to look for
+    const attributesToSet = ['title', 'id', 'placeholder', 'text', 'value', 'x', 'y', 'top', 'left', 'width', 'height'];
+    
+    // set attributes if present
+    attributesToSet.forEach((attribute) => {
+      this.setAttributeWhenPresent(textboxElement, attribute);
+    });
 
-    // textbox id (variable)
-    const textboxId = (this.hasAttribute('id') || this.hasAttribute('var'))
+    // set textbox size
+    textboxElement.style.width = this.getAttribute('width')
+    textboxElement.style.height = this.getAttribute('height')
 
-    // textbox title
-    const textboxTitle = this.hasAttribute('title') || 'null'
+    // set textbox title
+    textboxElement.placeholder = this.getAttribute('title') || ''
+    textboxElement.value = this.getAttribute('text') || this.getAttribute('value') || ''
 
-    if (textboxTitle) {
-      textboxElement.setAttribute('placeholder', this.getAttribute('title'))
-    }
-
-    // textbox default value
-    const textboxDefaultValue = (this.hasAttribute('value') || this.hasAttribute('text'))
-
-    if (textboxDefaultValue) {
-      textboxElement.value =  (this.getAttribute('value') || this.getAttribute('text'))
-    }
-
-    if (textboxId) {
-      textboxElement.id = (this.getAttribute('id') || this.getAttribute('var'))
-    }
-
-    // textbox position
-    const textboxPosX = this.hasAttribute('x')
-    const textboxPosY = this.hasAttribute('y')
-
-    if (textboxPosX) {
-      textboxElement.style.left = this.getAttribute('x')
-    }
-
-    if (textboxPosY) {
-      textboxElement.style.top = this.getAttribute('y')
-    }
-
-    // padding
-    const textboxPadding = this.hasAttribute('padding')
-
-    if (textboxPadding) {
-      textboxElement.style.padding = this.getAttribute('padding')
-    }
-
-    // checkbox size
-    const textboxWidth = this.hasAttribute('width') || this.hasAttribute('w')
-    const textboxHeight = this.hasAttribute('height') || this.hasAttribute('h')
-
-    if (textboxWidth) {
-      textboxElement.style.width = this.getAttribute('width') || this.getAttribute('w')
-    }
-
-    if (textboxHeight) {
-      textboxElement.style.height = this.getAttribute('height') || this.getAttribute('h')
-    }
-
-    // apply external styles to the shadow dom
-    const globalStyleLink = document.createElement('link')
-    globalStyleLink.setAttribute('rel', 'stylesheet')
-    globalStyleLink.setAttribute('href', 'malua/malua.css')
-
-    const styleLink = document.createElement('link')
-    styleLink.setAttribute('rel', 'stylesheet')
-    styleLink.setAttribute('href', 'malua/widgets/textbox/textbox.css')
-
-    // attach our elements to the Shadow DOM
-    shadow.appendChild(globalStyleLink)
-    shadow.appendChild(styleLink)
-    shadow.appendChild(textboxElement)
+    // set textbox pos
+    textboxElement.style.left = this.getAttribute('x') || this.getAttribute('left')
+    textboxElement.style.top = this.getAttribute('y') || this.getAttribute('top')
   }
 }
 

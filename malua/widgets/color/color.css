@@ -4,12 +4,12 @@
 /*
     color button widget geometry
 */
-.m-color-box {
+.m-color-button-box {
   display: flex;
   align-items: center;
 
-  width: 95%;
-  height: 25px;
+  width: 85%;
+  height: 23px;
 
   margin: 5px auto;
 
@@ -22,35 +22,41 @@
   border-radius: 5px;
 }
 
-.m-color {
-  width: 35px;
-  height: 15px;
+.m-color-button {
+  width: 30px;
+  height: 20px;
 
-  background-color: var(--color-background);
-  box-shadow: 0 0 5px 1px var(--shadow);
+  background-color: transparent;
 
   border-radius: 3px;
 }
 
-.m-color-label {
+
+/*
+    color button label and output (color) text
+*/
+.m-color-button-label {
   padding-left: 7px;
+
+  font-size: 13px;
+
   color: var(--text-color-normal);
 }
 
 
 /*
-color widget custom states
+    color button widget custom states
 */
-.m-color:hover {
+.m-color-button:hover {
   cursor: pointer;
 }
 
-.m-color:disabled {
+.m-color-button:disabled {
   cursor: not-allowed;
   background-color: var(--color-background-disabled);
 }
 
-.m-color-label:disabled {
+.m-color-button-label:disabled {
   cursor: not-allowed;
   color: var(--text-color-disabled);
 }
