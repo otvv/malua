@@ -21,6 +21,86 @@ class MPanel extends HTMLElement {
     }
   }
 
+  // @brief: disables the ability to right click inside the panel
+  //
+  // @arguments: `element` = main panel element
+  // `headerElement` = header element wrapper 
+  // (in case the user wants to disable right click on it) 
+  disableRightClick = (element, headerElement = null) => {
+    element.addEventListener('contextmenu', event => event.preventDefault())
+    headerElement.addEventListener('contextmenu', event => event.preventDefault())
+  }
+
+  //
+  // @brief: handles panel dragging (movement)
+  //
+  // @arguments: `element` = main panel element (what will be dragged alongside the 'draggable-area')
+  // `headerElement` = headerElement ('area-to-drag') 
+  handleMovement = (element, headerElement) => {
+
+    // 'static' mutable variables
+    let isMouseDown = false
+    let isMouseInside = false
+    let mouseX = 0
+    let mouseY = 0
+    let elementX = 0
+    let elementY = 0
+    // TODO: ^^^ clean this up
+  
+    // set mouse status accordingly
+    // (if it's inside the headerElement area or not)
+    headerElement.addEventListener('mouseenter', () => { isMouseInside = true })
+    headerElement.addEventListener('mouseleave', () => { isMouseInside = false })
+  
+    // @brief: mouse click down 'lambda' event
+    //
+    // @note: only listen to clicks inside the hader element
+    // (in case this needs to be changed, feel free to do so)
+    headerElement.addEventListener('mousedown', (event) => {
+
+      // grab current cursor position
+      mouseX = event.clientX
+      mouseY = event.clientY
+
+      // set click state
+      isMouseDown = true
+    })
+
+    // @brief: mouse movement 'lambda' event
+    //
+    // @note: this will handle all mouse move events 
+    // (this in theory could be further optimized to only 'listen'
+    // for movement when inside the panel)
+    document.addEventListener('mousemove', (event) => {
+      if (!isMouseDown || !isMouseInside) {
+        return
+      }
+  
+      // calcualte panel delta position
+      let posDeltaX = (+event.clientX - +mouseX)
+      let posDeltaY = (+event.clientY - +mouseY)
+  
+      // move panel element
+      element.style.left = (+elementX + +posDeltaX) + 'px'
+      element.style.top = (+elementY + +posDeltaY) + 'px'
+    })
+  
+    // @brief: mouse click up 'lambda' event
+    //
+    // @note: this will listen in the entire document because we 
+    // just want to check if the user has let go of the mouse left button 
+    document.addEventListener('mouseup', () => {
+
+      // reset click and mouse states
+      isMouseDown = false
+      isMouseInside = false
+
+      elementX = +element.style.left
+      elementY = +element.style.top
+    })
+
+  }
+
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
@@ -104,74 +184,12 @@ class MPanel extends HTMLElement {
       panelWidgetArea.appendChild(this.childNodes[i])
     }
 
-    // make the panel draggable
-    handleMovement(panelHeaderElement, panelElement)
+    // handle panel movement
+    this.handleMovement(panelElement, panelHeaderElement)
 
     // disable right clicking
-    disableRightClick(panelHeaderElement, panelElement)
+    this.disableRightClick(panelElement, panelHeaderElement)
   }
-}
-
-// TODO: clean this up and maybe move it to another file
-const handleMovement = (headerElement, element) => {
-
-  let isMouseDown = false
-  let isMouseInside = false
-  let mouseX = 0
-  let mouseY = 0
-  let elementX = 0
-  let elementY = 0
-
-  // set mouse status accordingly
-  headerElement.addEventListener('mouseenter', () => { isMouseInside = true })
-  headerElement.addEventListener('mouseleave', () => { isMouseInside = false })
-
-  const onMouseClickDown = (event) => {
-
-    // grab current cursor position
-    mouseX = event.clientX
-    mouseY = event.clientY
-
-    // set click status
-    isMouseDown = true
-  }
-
-  headerElement.addEventListener('mousedown', onMouseClickDown)
-
-  const onMouseClickUp = () => {
-
-    // reset states
-    isMouseDown = false
-    isMouseInside = false
-
-    elementX = parseInt(element.style.left)
-    elementY = parseInt(element.style.top)
-  }
-
-  document.addEventListener('mouseup', onMouseClickUp)
-
-  const onMouseMove = (event) => {
-
-    if (!isMouseDown || !isMouseInside) {
-      return
-    }
-
-    // calcualte the delta position
-    let posDeltaX = (event.clientX - mouseX)
-    let posDeltaY = (event.clientY - mouseY)
-
-    // move element
-    element.style.left = (elementX + posDeltaX) + 'px'
-    element.style.top = (elementY + posDeltaY) + 'px'
-  }
-
-  document.addEventListener('mousemove', onMouseMove)
-}
-
-// TODO: move this to another file?
-const disableRightClick = (headerElement, element) => {
-  headerElement.addEventListener('contextmenu', event => event.preventDefault())
-  element.addEventListener('contextmenu', event => event.preventDefault())
 }
 
 // define the new element

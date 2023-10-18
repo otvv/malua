@@ -53,7 +53,7 @@ hr {
   --font-bold: 700;
 
   /* custom font flags */
-  --font-shadow: -2px 1px var(--text-shadow);
+  --font-shadow: 2px 1px var(--text-shadow);
   --font-outline: -webkit-text-stroke: 1.5px var(--text-outline);
 
   /* separator colors */
