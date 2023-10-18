@@ -9,6 +9,7 @@
 
 <hr>
 
-A simple CSS framework designed to be used alongside Ultralight or Electron with game hacking in mind, but it can be used in any web environment for any purpose.
+A simple CSS framework/UI toolkit designed to be used alongside Ultralight, Electron or any HTML/CSS (web) renderer.
+`malua` was made with game hacking in mind, but it can be used in any web environment for any purpose.
 
 This UI framework was designed to be the spiritual successor of <a href="https://github.com/otvv/fgui">FGUI</a> with an easier approach and more versatility in mind.
