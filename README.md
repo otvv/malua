@@ -9,7 +9,9 @@
 
 <hr>
 
-A simple CSS framework/UI toolkit designed to be used alongside Ultralight, Electron or any HTML/CSS (web) renderer.
-`malua` was made with game hacking in mind, but it can be used in any web environment for any purpose.
+A simple CSS framework/UI toolkit designed to be used alongside a HTML/CSS renderer like Ultralight, Sciter or Electron. You can also use 'malua' alongside another framework such as Express.JS, ASP.NET or in any web-environment.
+`malua` was made with game hacking in mind, but it can be used for anything that you feel suited.
 
-This framework/toolkit was designed to be the spiritual successor of <a href="https://github.com/otvv/fgui">FGUI</a> with an easier approach and more versatility in mind.
+<br>
+
+This framework/toolkit was designed to be the spiritual successor of <a href="https://github.com/otvv/fgui">FGUI</a> with an easier approach and more versatility in mind but as time went by and the development progressed, I felt that it's better not to _"kill"_ FGUI but keep updating it instead. _(at some extent at least.)_
