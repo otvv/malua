@@ -21,6 +21,21 @@ class MButton extends HTMLElement {
     }
   }
 
+  // @brief: with this fucntion the user can set a href link to a widget
+  // that can handle `onclick` events (in this case the button) 
+  //
+  // @arguments: `element` = target element that will handle the 'onclick' event
+  //             `hrefLink` = hyper reference link name (with #)
+  setHref = (element, hrefLink) => {
+    if (element === null) {
+      return;
+    }
+
+    element.onclick = () => {
+      window.location.href = hrefLink;
+    } 
+  }
+
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
@@ -38,7 +53,7 @@ class MButton extends HTMLElement {
     const buttonElement = shadow.querySelector('button')
 
     // list of attributes to look for
-    const attributesToSet = ['title', 'id', 'shader', 'effect', 'x', 'y', 'top', 'left', 'width', 'height'];
+    const attributesToSet = ['title', 'id', 'shader', 'href', 'link', 'effect', 'x', 'y', 'top', 'left', 'width', 'height'];
 
     // set attributes if present
     attributesToSet.forEach((attribute) => {
@@ -58,6 +73,11 @@ class MButton extends HTMLElement {
     
     // set button shader
     buttonElement.classList.add(this.getAttribute('shader') || this.getAttribute('effect'))
+
+    // set button link/href
+    if (this.hasAttribute('href')) {
+      this.setHref(buttonElement, this.getAttribute('href'))
+    }
   }
 }
 

@@ -6,7 +6,7 @@
 */
 .m-groupbox {
   display: flex;
-  
+
   flex-direction: column;
   flex-basis: content;
   align-content:space-around;
@@ -20,7 +20,7 @@
   box-shadow: 0 0 5px 1px var(--shadow);
   
   border-radius: 5px;
-  
+
   /* DEBUG PURPOSES ONLY */
   /* border: 2px dashed rgb(0, 255, 242); */
 }

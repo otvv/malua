@@ -14,18 +14,22 @@
 
   box-sizing: unset;
 
+  appearance: none !important;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
-  appearance: none !important;
+  -o-appearance: none !important;
+  -ms-appearance: none !important; 
 
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -o-user-select: none !important;
+  -ms-user-select: none !important;
 
-  -webkit-user-drag: none;
-  -moz-user-drag: none;
+  -webkit-user-drag: none !important;
+  -moz-user-drag: none !important;
 
-  user-zoom:fixed;
+  user-zoom: fixed;
 
   /* Font settings */
   font-family: 'Segoe UI', sans-serif;
@@ -123,6 +127,14 @@ hr {
   --color-box-background: #ffffff85;
   --color-background: #ffffff9c;
   --color-background-disabled: #5c5c5c9c;
+
+  /* modal widget colors */
+  --modal-background: #ffffff85;
+  --modal-border: #6d6d6d;
+  --modal-background-active: #0000004b;
+  --modal-button-background: #2f302fb6;
+  --modal-button-background-active: #e65454ab;
+
 }
 
 /* Shaders */

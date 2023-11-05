@@ -21,6 +21,21 @@ class MAlert extends HTMLElement {
     }
   }
 
+  // @brief: with this fucntion the user can set a href link to a widget
+  // that can handle `onclick` events (in this case the button) 
+  //
+  // @arguments: `element` = target element that will handle the 'onclick' event
+  //             `hrefLink` = hyper reference link name (with #)
+  setHref = (element, hrefLink) => {
+    if (element === null) {
+      return;
+    }
+
+    element.onclick = () => {
+      window.location.href = hrefLink;
+    } 
+  }
+
   // @brief: this function will checks for clicks around the area of the alert
   // after a click is registered it will proceed to hide it with a little fade-out animation
   // @arguments: `alertElement` = alert element wrapper 
@@ -65,11 +80,11 @@ class MAlert extends HTMLElement {
     const alertLabelElement = shadow.querySelector('a')
     
     // list of attributes to look for
-    const attributesToSet = ['text', 'id', 'shader', 'effect', 'x', 'y', 'top', 'left', 'width', 'height'];
+    const attributesToSet = ['text', 'id', 'shader', 'effect', 'type', 'x', 'y', 'top', 'left', 'width', 'height'];
 
     // set attributes if present
     attributesToSet.forEach((attribute) => {
-      this.setAttributeWhenPresent(alertLabelElement, attribute);
+      this.setAttributeWhenPresent(alertSpanElement, attribute);
     });
     
     // set alert size
@@ -104,6 +119,9 @@ class MAlert extends HTMLElement {
     
     // hide alert (notification) if the user clicks on it
     this.hideAlerts(alertSpanElement)
+
+    // set alert link/href
+    this.setHref(buttonElement, this.getAttribute('href'))
   }
 }
 

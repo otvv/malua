@@ -14,11 +14,10 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   
-
   /* DEBUG PURPOSES ONLY */
   /* border: 2px dashed rgb(255, 0, 179); */
 
-  z-index: 0;
+  z-index: -1;
 }
 
 /* 
@@ -56,7 +55,7 @@
     panel widget geometry
 */
 .m-panel {
-  position: absolute;
+  position:absolute;
 
   border: 1px solid var(--panel-border);
   background-color: var(--panel-background);
@@ -68,7 +67,7 @@
   /* DEBUG PURPOSES ONLY */
   /* border: 2px dashed rgb(0, 0, 0); */
 
-  z-index: 0;
+  z-index: -1;
 }
 
 .m-panel-widget-area {

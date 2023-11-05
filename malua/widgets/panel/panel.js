@@ -132,6 +132,11 @@ class MPanel extends HTMLElement {
     const panelHeaderElement = shadow.querySelector('header')
     const panelWidgetArea = shadow.querySelector('section')
 
+    // filter child elements
+    for (let i = 1; i < this.childNodes.length; i++) {
+      panelWidgetArea.appendChild(this.childNodes[i])
+    }
+
     // panel image wrapper
     const panelImageElement = shadow.querySelector('img')
 
@@ -177,16 +182,10 @@ class MPanel extends HTMLElement {
 
     // set panel shader
     panelElement.classList.add(this.getAttribute('shader') || this.getAttribute('effect'))
-
-
-    // filter child elements
-    for (let i = 1; i < this.childNodes.length; i++) {
-      panelWidgetArea.appendChild(this.childNodes[i])
-    }
-
+    
     // handle panel movement
     this.handleMovement(panelElement, panelHeaderElement)
-
+    
     // disable right clicking
     this.disableRightClick(panelElement, panelHeaderElement)
   }

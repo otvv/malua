@@ -5,7 +5,7 @@
     figure widget geometry
 */
 .m-figure {
-  position: sticky;
+  position: inherit;
 
   margin: auto auto 5px 5px;
 
