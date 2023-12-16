@@ -11,9 +11,6 @@
   height: fit-content;
 
   margin: 15px;
-
-  /* DEBUG PURPOSES ONLY */
-  /* border: 2px dashed rgb(172, 139, 118); */
 }
 
 .m-alert {
@@ -24,7 +21,7 @@
   min-height: 50px;
 
   background: var(--alert-box-background);
-  box-shadow:0 0 5px 1px var(--shadow);
+  box-shadow: 0 0 5px 1px var(--shadow);
 
   border: 1px solid var(--alert-box-border);
   border-radius: 7px;
@@ -64,7 +61,7 @@
 
 .m-alert-pulse {
   padding-left: 10px;
-	animation: ease-in-out pulse 1.5s infinite;
+  animation: ease-in-out pulse 1.5s infinite;
   border-left: 7px solid var(--alert-box-type-default);
 }
 
@@ -74,18 +71,18 @@
 
 /* TODO: move this to dedicated file */
 @keyframes pulse {
-	0% {
-		transform: scale(1);
-    box-shadow: 0 0 5px 1px var(--shadow);
-	}
-
-	75% {
-    transform: scale(1.03);
-    box-shadow: 0 0 5px 1px var(--colored-shadow-pulse);
-	}
-
-	100% {
+  0% {
     transform: scale(1);
     box-shadow: 0 0 5px 1px var(--shadow);
-	}
+  }
+
+  75% {
+    transform: scale(1.03);
+    box-shadow: 0 0 5px 1px var(--colored-shadow-pulse);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 5px 1px var(--shadow);
+  }
 }

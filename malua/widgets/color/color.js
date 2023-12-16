@@ -1,33 +1,16 @@
 /*
-*/
+ */
 
-'use strict'
+"use strict";
 
-class MColor extends HTMLElement {
-  
-  // @brief: this function will check if a certain attribute exists 
-  // in the widget context and if it exists, it will set that attribute accordingly
-  //
-  // @arguments: `element` = element to set the attribute
-  //             `attributeName` = attribute to check if it exists, in case it does, apply its value
-  //             (the value that will be aplied to the attribute is the same that the user provided when "declaring"
-  //              the element in the html root page.)
-  setAttributeWhenPresent = (element, attributeName) => {
-    const attributeValue = this.getAttribute(attributeName);
-      
-    // only set attribute if the user has set a value to it
-    if (attributeValue) {
-      element.setAttribute(attributeName, attributeValue);
-    }
-  }
-
+class MColor extends MMalua {
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ...
-    super()
+    super();
 
     // create shadow root
-    const shadow = this.attachShadow({ mode: 'open' })
+    const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
           <link rel="stylesheet" href="malua/malua.css">
           <link rel="stylesheet" href="malua/widgets/color/color.css">
@@ -37,43 +20,72 @@ class MColor extends HTMLElement {
           </div>
         `;
 
-        
     // color button wrapper and box div
-    const colorbuttonElement = shadow.querySelector('input')
-    const boxDivElement = shadow.querySelector('div')
+    const colorButtonElement = shadow.querySelector("input");
+    const boxDivElement = shadow.querySelector("div");
 
     // color input title
-    const colorbuttonLabelElement = shadow.querySelector('label')
+    const colorButtonLabelElement = shadow.querySelector("label");
 
     // list of attributes to look for
-    const attributesToSet = ['title', 'id', 'placeholder', 'disabled', 'color', 'value', 'padding', 'x', 'y', 'top', 'left', 'width', 'height']
+    const attributesToSet = [
+      "label",
+      "id",
+      "placeholder",
+      "disabled",
+      "color",
+      "value",
+      "padding",
+      "x",
+      "y",
+      "top",
+      "left",
+      "width",
+      "height",
+    ];
 
     // set attributes if present
     attributesToSet.forEach((attribute) => {
-      this.setAttributeWhenPresent(colorbuttonElement, attribute);
+      this.setAttributeWhenPresent(colorButtonElement, attribute);
     });
 
-    // color button title and string attribution
-    colorbuttonLabelElement.textContent = colorbuttonElement.title;
-    
-    if (colorbuttonElement.id.length > 0) {
-      colorbuttonLabelElement.setAttribute('for', colorbuttonElement.id);
-    }
+    // set colorpicker label
+    const elementLabel = this.getAttribute("label");
+    this.setLabel(colorButtonLabelElement, elementLabel, true);
 
     // set default color
-    if (this.hasAttribute('color') || this.hasAttribute('value')) {
-      colorbuttonElement.value =  (this.getAttribute('color') || this.getAttribute('value'))
+    const elementValue =
+      this.getAttribute("color") || this.getAttribute("value");
+    this.setValue(colorButtonElement, elementValue);
+
+    // set colorpicker div box abs pos
+    const elementPosition = [
+      this.getAttribute("x") || this.getAttribute("left"),
+      this.getAttribute("y") || this.getAttribute("top"),
+    ];
+    this.setPosition(boxDivElement, elementPosition);
+
+    // set colorpicker box div size
+    const elementSize = [
+      this.getAttribute("width") || "fit-content",
+      this.getAttribute("height"),
+    ];
+    this.setSize(boxDivElement, elementSize);
+
+    // set slider placeholder
+    const elementPlaceholder = this.getAttribute("placeholder");
+    this.setPlaceholder(colorButtonElement, elementPlaceholder);
+
+    // set colorpicker id and string attribution
+    if (this.hasAttribute("id")) {
+      colorButtonElement.setAttribute("id", this.getAttribute("id"));
+      colorButtonLabelElement.setAttribute("for", colorButtonElement.id);
     }
 
-    // set div box size
-    boxDivElement.style.width = this.getAttribute('width')
-    boxDivElement.style.height = this.getAttribute('height')
-
-    // set div box pos
-    boxDivElement.style.left = this.getAttribute('x') || this.getAttribute('left')
-    boxDivElement.style.top = this.getAttribute('y') || this.getAttribute('top')
+    // this fixes some incompatibility issues
+    this.removeAttribute("id");
   }
 }
 
 // define the new element
-customElements.define('m-color', MColor)
+customElements.define("m-color", MColor);

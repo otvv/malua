@@ -1,33 +1,16 @@
 /*
-*/
+ */
 
-'use strict'
+"use strict";
 
-class MCheckBox extends HTMLElement {
-
-  // @brief: this function will check if a certain attribute exists 
-  // in the widget context and if it exists, it will set that attribute accordingly
-  //
-  // @arguments: `element` = element to set the attribute
-  //             `attributeName` = attribute to check if it exists, in case it does, apply its value
-  //             (the value that will be aplied to the attribute is the same that the user provided when "declaring"
-  //              the element in the html root page.)
-  setAttributeWhenPresent = (element, attributeName) => {
-    const attributeValue = this.getAttribute(attributeName);
-    
-    // only set attribute if the user has set a value to it
-    if (attributeValue) {
-      element.setAttribute(attributeName, attributeValue);
-    }
-  }
-
+class MCheckBox extends MMalua {
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
-    super()
+    super();
 
     // create shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
           <link rel="stylesheet" href="malua/malua.css">
           <link rel="stylesheet" href="malua/widgets/checkbox/checkbox.css">
@@ -37,48 +20,73 @@ class MCheckBox extends HTMLElement {
           </div>
         `;
 
-
     // checkbox input wrapper and box div
-    const checkboxElement = shadow.querySelector('input')
-    const boxDivElement = shadow.querySelector('div')
+    const checkboxElement = shadow.querySelector("input");
+    const boxDivElement = shadow.querySelector("div");
 
     // checkbox input title
-    const checkboxLabelElement = shadow.querySelector('label')
+    const checkboxLabelElement = shadow.querySelector("label");
 
-     // list of attributes to look for
-     const attributesToSet = ['title', 'id', 'placeholder', 'disabled', 'padding', 'x', 'y', 'top', 'left', 'width', 'height'];
-    
-     // set attributes if present
-     attributesToSet.forEach((attribute) => {
-       this.setAttributeWhenPresent(checkboxElement, attribute);
-     });
-    
-    // checkbox title and string attribution
-    checkboxLabelElement.textContent = checkboxElement.title;
-    
-    if (checkboxElement.id.length > 0) {
-      checkboxLabelElement.setAttribute('for', checkboxElement.id);
+    // list of attributes to look for
+    const attributesToSet = [
+      "label",
+      "id",
+      "disabled",
+      "checked",
+      "value",
+      "state",
+      "x",
+      "y",
+      "top",
+      "left",
+      "width",
+      "height",
+    ];
+
+    // set attributes if present
+    attributesToSet.forEach((attribute) => {
+      this.setAttributeWhenPresent(checkboxElement, attribute);
+    });
+
+    // set default checkbox state
+    const elementState =
+      this.getAttribute("checked") ||
+      this.getAttribute("value") ||
+      this.getAttribute("state");
+    this.setState(checkboxElement, elementState);
+
+    // set checkbox div box abs pos
+    const elementPosition = [
+      this.getAttribute("x") || this.getAttribute("left"),
+      this.getAttribute("y") || this.getAttribute("top"),
+    ];
+    this.setPosition(boxDivElement, elementPosition);
+
+    // set checkbox box div size
+    const elementSize = [
+      this.getAttribute("width") || "fit-content",
+      this.getAttribute("height"),
+    ];
+    this.setSize(boxDivElement, elementSize);
+
+    // set checkbox label
+    const elementLabel = this.getAttribute("label");
+    this.setLabel(checkboxLabelElement, elementLabel, true);
+
+    // set checkbox placeholder
+    const elementPlaceholder = this.getAttribute("placeholder");
+    this.setPlaceholder(checkboxElement, elementPlaceholder);
+
+    // set checkbox id and string attribution
+    if (this.hasAttribute("id")) {
+      checkboxElement.setAttribute("id", this.getAttribute("id"));
+      checkboxLabelElement.setAttribute("for", checkboxElement.id);
     }
 
-    // set default state
-    // TODO: clean this up
-    if (this.getAttribute('checked') === 'true' || this.getAttribute('checked') === 'checked' 
-    || (this.getAttribute('state') === 'true' || this.getAttribute('state') === 'checked')) {
-      checkboxElement.click();
-      checkboxElement.checked = true;
-    } else {
-      checkboxElement.checked = false
-    }
-
-    // set div box size
-    boxDivElement.style.width = this.getAttribute('width')
-    boxDivElement.style.height = this.getAttribute('height')
-
-    // set div box pos
-    boxDivElement.style.left = this.getAttribute('x') || this.getAttribute('left')
-    boxDivElement.style.top = this.getAttribute('y') || this.getAttribute('top')
+    // this fixes some incompatibility issues
+    this.removeAttribute("id");
   }
 }
 
 // define the new element
-customElements.define('m-checkbox', MCheckBox)
+customElements.define("m-checkbox", MCheckBox);

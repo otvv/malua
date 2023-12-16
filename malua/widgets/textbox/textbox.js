@@ -1,11 +1,10 @@
 /*
-*/
+ */
 
-'use strict'
+"use strict";
 
-class MTextBox extends HTMLElement {
-
-  // @brief: this function will check if a certain attribute exists 
+class MTextBox extends MMalua {
+  // @brief: this function will check if a certain attribute exists
   // in the widget context and if it exists, it will set that attribute accordingly
   //
   // @arguments: `element` = element to set the attribute
@@ -14,20 +13,20 @@ class MTextBox extends HTMLElement {
   //              the element in the html root page.)
   setAttributeWhenPresent = (element, attributeName) => {
     const attributeValue = this.getAttribute(attributeName);
-    
+
     // only set attribute if the user has set a value to it
     if (attributeValue) {
       element.setAttribute(attributeName, attributeValue);
     }
-  }
+  };
 
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
-    super()
+    super();
 
     // create shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
           <link rel="stylesheet" href="malua/malua.css">
           <link rel="stylesheet" href="malua/widgets/textbox/textbox.css">
@@ -35,29 +34,65 @@ class MTextBox extends HTMLElement {
         `;
 
     // text input wrapper
-    const textboxElement = shadow.querySelector('input')
+    const textboxElement = shadow.querySelector("input");
 
     // list of attributes to look for
-    const attributesToSet = ['title', 'id', 'placeholder', 'text', 'value', 'x', 'y', 'top', 'left', 'width', 'height'];
-    
+    const attributesToSet = [
+      "label",
+      "id",
+      "placeholder",
+      "text",
+      "value",
+      "x",
+      "y",
+      "top",
+      "left",
+      "width",
+      "height",
+    ];
+
     // set attributes if present
     attributesToSet.forEach((attribute) => {
       this.setAttributeWhenPresent(textboxElement, attribute);
     });
 
+    // set textbox default value
+    textboxElement.placeholder =
+      this.getAttribute("text") || this.getAttribute("value") || "";
+
+    // set textbox label
+    const elementLabel =
+      this.getAttribute("label") || this.getAttribute("placeholder");
+    this.setLabel(textboxElement, elementLabel);
+
+    // set textbox default value
+    const elementValue =
+      this.getAttribute("text") || this.getAttribute("value");
+    this.setValue(textboxElement, elementValue);
+
+    // set textbox abs pos
+    const elementPosition = [
+      this.getAttribute("x") || this.getAttribute("left"),
+      this.getAttribute("y") || this.getAttribute("top"),
+    ];
+    this.setPosition(textboxElement, elementPosition);
+
     // set textbox size
-    textboxElement.style.width = this.getAttribute('width')
-    textboxElement.style.height = this.getAttribute('height')
+    const elementSize = [
+      this.getAttribute("width"),
+      this.getAttribute("height"),
+    ];
+    this.setSize(textboxElement, elementSize);
 
-    // set textbox title
-    textboxElement.placeholder = this.getAttribute('title') || ''
-    textboxElement.value = this.getAttribute('text') || this.getAttribute('value') || ''
+    // set textbox id
+    if (this.hasAttribute("id")) {
+      textboxElement.setAttribute("id", this.getAttribute("id"));
+    }
 
-    // set textbox pos
-    textboxElement.style.left = this.getAttribute('x') || this.getAttribute('left')
-    textboxElement.style.top = this.getAttribute('y') || this.getAttribute('top')
+    // this fixes some incompatibility issues
+    this.removeAttribute("id");
   }
 }
 
 // define the new element
-customElements.define('m-textbox', MTextBox)
+customElements.define("m-textbox", MTextBox);

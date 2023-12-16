@@ -31,7 +31,6 @@
   border-radius: 3px;
 }
 
-
 /*
     color button label and output (color) text
 */
@@ -42,7 +41,6 @@
 
   color: var(--text-color-normal);
 }
-
 
 /*
     color button widget custom states

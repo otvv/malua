@@ -21,27 +21,27 @@
   height: 250px;
 
   margin: auto;
-  top: 50%; 
-  
+  top: 50%;
+
   text-align: center;
   text-align-last: center;
 
   font-weight: var(--font-normal);
   color: var(--text-color-normal);
-  
+
   box-shadow: 0 0 7px 1px var(--shadow);
   background-color: var(--modal-background);
-  
+
   border: 1px solid var(--modal-border);
   border-radius: 5px;
 
   /* very ghetto way of centering the modal */
-  transform:translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .m-modal-button {
   margin-left: 90%;
-  
+
   background-color: var(--modal-button-background);
   border: 1px solid var(--modal-border);
   box-shadow: 0 0 7px 1px var(--shadow);

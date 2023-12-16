@@ -5,9 +5,12 @@
     figure widget geometry
 */
 .m-figure {
-  position: inherit;
+  position: static;
 
-  margin: auto auto 5px 5px;
+  margin: 5px 5px;
+
+  width: fit-content;
+  height: fit-content;
 
   background-color: var(--figure-frame-background);
   box-shadow: 0 0 5px 1px var(--shadow);

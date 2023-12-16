@@ -60,10 +60,10 @@
 .m-slider::-webkit-slider-thumb {
   width: 14px;
   height: 14px;
-  
+
   border: 1px solid var(--slider-thumb-border);
   background: var(--slider-thumb-background);
-  
+
   border-radius: 50%;
 
   -webkit-appearance: none;
