@@ -54,17 +54,22 @@ class MSlider extends MMalua {
     });
 
     // set default value
-    sliderOutput.textContent = sufix
-      ? `${sliderElement.valueAsNumber} (${sufix})`
-      : sliderElement.valueAsNumber;
+    const elementValue = this.getAttribute("value");
+    this.setValue(sliderElement, elementValue);
+    
+    // update slider value on input
+    {
+      sliderOutput.textContent = sufix
+        ? `${sliderElement.valueAsNumber} (${sufix})`
+        : `${sliderElement.valueAsNumber}`;
 
-    // update slider
-    sliderElement.oninput = (event) => {
-      sliderOutput.innerHTML = sufix
-        ? `${event.target.valueAsNumber} (${sufix})`
-        : event.target.valueAsNumber;
-    };
-
+      sliderElement.oninput = (event) => {
+        sliderOutput.innerHTML = sufix
+          ? `${event.target.valueAsNumber} (${sufix})`
+          : `${event.target.valueAsNumber}`;
+      };
+    }
+      
     // set slider div box abs pos
     const elementPosition = [
       this.getAttribute("x") || this.getAttribute("left"),
