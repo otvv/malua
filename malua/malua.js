@@ -127,7 +127,7 @@ class MMalua extends HTMLElement {
       return;
     }
 
-    if (title) {
+    if (title !== null) {
       if (skipPlaceholder === false) {
         element.placeholder = title;
       }
@@ -144,7 +144,7 @@ class MMalua extends HTMLElement {
       return;
     }
 
-    if (placeholder) {
+    if (placeholder !== null) {
       element.placeholder = placeholder;
     }
   }
@@ -158,7 +158,7 @@ class MMalua extends HTMLElement {
       return;
     }
 
-    if (value) {
+    if (value !== null) {
       element.value = value;
     }
   }
@@ -195,7 +195,7 @@ class MMalua extends HTMLElement {
     }
 
     if (shader) {
-      if (additional) {
+      if (additional !== null) {
         element.classList.add(shader, additional);
       } else {
         element.classList.add(shader);
@@ -213,7 +213,7 @@ class MMalua extends HTMLElement {
       return;
     }
 
-    if (hrefLink) {
+    if (hrefLink !== null) {
       element.onclick = () => {
         window.location.href = hrefLink;
       };
@@ -234,7 +234,7 @@ class MMalua extends HTMLElement {
 
     const attributeValue = element.getAttribute(attributeName);
 
-    if (attributeValue) {
+    if (attributeValue !== null) {
       element.setAttribute(attributeName, attributeValue);
     }
   };
