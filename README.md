@@ -10,8 +10,13 @@
 <hr>
 
 A simple CSS framework/UI toolkit designed to be used alongside a HTML/CSS renderer like Ultralight, Sciter or Electron. You can also use 'malua' alongside another framework such as Express.JS, ASP.NET or in any web-environment.
-`malua` was made with game hacking in mind, but it can be used for anything that you feel suited.
-
+`malua` was made to be used on gaming related projects, such as trainers and _**G**UIs_ _(using Electron, ASP.NET or a HTML Renderer of your choice.)_. `malua` can also be used for anything that you feel suited.
 <br>
 
-This framework/toolkit was designed to be the spiritual successor of <a href="https://github.com/otvv/fgui">FGUI</a> with an easier approach and more versatility in mind but as time went by and the development progressed, I felt that it's better not to _"kill"_ FGUI but keep updating it instead. _(at some extent at least.)_
+Malua was born with a simple premise, to replace <a href="https://github.com/otvv/fgui">FGUI</a> and to be a more versatile GUI framework, easier to customize and to build a menu/ui with it. But as the development progressed I've decided to turn `malua` into an UI framework/toolkit for people to build web apps with ease without the hassle of designing their own UI or dealing with native HTML elements. 
+
+Malua still requires for you to use native HTML for some things such as handling page background, additional elements _(headers, footers, etc)_ and some other minor stuff such as linking widgets so you can actually use/handle them in JavaScript. If you know the basic of HTML5/JS you won't have any problems. After all, `malua` widgets are works just like any other HTML5 element.
+
+For a few people `malua` might not be ideal since it is missing a few widgets for a full fledged GUI toolkit such as **TabPanels**, **ComboBoxes**/**SelectionBoxes** and **ListBoxes** _(these widgets are going to be implemented after release.)_.
+
+But for a web ui perspective `malua` works very well as you can see here: <a href="https://wallpaperize.vercel.app">wallpaperize!</a>
