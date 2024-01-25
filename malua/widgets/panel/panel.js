@@ -193,8 +193,12 @@ class MPanel extends MMalua {
     this.setShader(panelElement, elementShader);
 
     // set panel image source and alt text
-    panelImageElement.src = this.getAttribute("src");
-    panelImageElement.alt = this.getAttribute("alt");
+    if (this.hasAttribute("src")) {
+      panelImageElement.src = this.getAttribute("src");
+      panelImageElement.alt = this.getAttribute("alt");
+    } else {
+      panelImageElement.style.display = "none";
+    }
 
     // handle panel movement
     this.handleMovement(panelElement, panelHeaderElement);
