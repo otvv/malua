@@ -16,28 +16,42 @@ class MPanel extends MMalua {
     );
   };
 
-  //
   // @brief: handles panel dragging (movement)
   //
   // @arguments: `element` = main panel element (what will be dragged alongside the 'draggable-area')
   // `headerElement` = headerElement ('area-to-drag')
   handleMovement = (element, headerElement) => {
     // 'static' mutable variables
+    let animFrameId = 0;
     let isMouseDown = false;
     let isMouseInside = false;
     let mouseX = 0;
     let mouseY = 0;
-    let elementX = 0;
-    let elementY = 0;
-    // TODO: ^^^ clean this up
+    let elementRect = element.getBoundingClientRect();
 
-    // set mouse status accordingly
-    // (if it's inside the headerElement area or not)
+    // @brief: updates panel animation frame whenever this function is called
+    //
+    // @note: this is used to make the dragging "animation" more smooth and responsible
+    const animateFrame = () => {
+      // animate panel 
+      animFrameId = window.requestAnimationFrame(() => {});
+
+      // update panel dimensions every frame
+      elementRect = element.getBoundingClientRect();
+    };
+
+    // @brief: mouse enter/leave 'lambda' event
+    //
+    // @note: (these events will only be triggered if it's inside 
+    // the headerElement area)
     headerElement.addEventListener("mouseenter", () => {
       isMouseInside = true;
     });
     headerElement.addEventListener("mouseleave", () => {
       isMouseInside = false;
+
+      // stop updating panel frame
+      window.cancelAnimationFrame(animFrameId);
     });
 
     // @brief: mouse click down 'lambda' event
@@ -49,8 +63,14 @@ class MPanel extends MMalua {
       mouseX = event.clientX;
       mouseY = event.clientY;
 
+      // update panel dimentions
+      elementRect = element.getBoundingClientRect();
+
       // set click state
       isMouseDown = true;
+
+      // update panel anim frame 
+      animateFrame();
     });
 
     // @brief: mouse movement 'lambda' event
@@ -59,17 +79,17 @@ class MPanel extends MMalua {
     // (this in theory could be further optimized to only 'listen'
     // for movement when inside the panel)
     document.addEventListener("mousemove", (event) => {
-      if (!isMouseDown || !isMouseInside) {
+      if (isMouseDown === false || isMouseInside === false) {
         return;
       }
 
       // calcualte panel delta position
-      let posDeltaX = +event.clientX - +mouseX;
-      let posDeltaY = +event.clientY - +mouseY;
+      const posDeltaX = (+event.clientX - +mouseX);
+      const posDeltaY = (+event.clientY - +mouseY);
 
       // move panel element
-      element.style.left = +elementX + +posDeltaX + "px";
-      element.style.top = +elementY + +posDeltaY + "px";
+      element.style.left = `${+elementRect.left + +posDeltaX}px`;
+      element.style.top = `${+elementRect.top + +posDeltaY}px`;
     });
 
     // @brief: mouse click up 'lambda' event
@@ -77,12 +97,11 @@ class MPanel extends MMalua {
     // @note: this will listen in the entire document because we
     // just want to check if the user has let go of the mouse left button
     document.addEventListener("mouseup", () => {
-      // reset click and mouse states
+      // reset states
       isMouseDown = false;
-      isMouseInside = false;
-
-      elementX = +element.style.left;
-      elementY = +element.style.top;
+      
+      // stop updating panel frame
+      window.cancelAnimationFrame(animFrameId);
     });
   };
 
