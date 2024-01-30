@@ -4,6 +4,28 @@
 "use strict";
 
 class MSlider extends MMalua {
+  // @brief: perform initial operations when mounting element
+  connectedCallback() {
+    const sliderElement = this.shadowRoot.querySelector(".m-slider");
+    const sufix = this.getAttribute("sufix") || "";
+    const sliderOutput = this.shadowRoot.querySelector("output");
+
+    // set slider default value
+    this.setValue(sliderElement, this.getAttribute("value") || 0);
+
+    {
+      sliderOutput.textContent = sufix
+        ? `${sliderElement.valueAsNumber} (${sufix})`
+        : `${sliderElement.valueAsNumber}`;
+
+      sliderElement.oninput = (event) => {
+        sliderOutput.innerHTML = sufix
+          ? `${event.target.valueAsNumber} (${sufix})`
+          : `${event.target.valueAsNumber}`;
+      };
+    }
+  }
+
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
@@ -53,23 +75,6 @@ class MSlider extends MMalua {
       this.setAttributeWhenPresent(sliderElement, attribute);
     });
 
-    // set default value
-    const elementValue = this.getAttribute("value");
-    this.setValue(sliderElement, elementValue);
-    
-    // update slider value on input
-    {
-      sliderOutput.textContent = sufix
-        ? `${sliderElement.valueAsNumber} (${sufix})`
-        : `${sliderElement.valueAsNumber}`;
-
-      sliderElement.oninput = (event) => {
-        sliderOutput.innerHTML = sufix
-          ? `${event.target.valueAsNumber} (${sufix})`
-          : `${event.target.valueAsNumber}`;
-      };
-    }
-      
     // set slider div box abs pos
     const elementPosition = [
       this.getAttribute("x") || this.getAttribute("left"),

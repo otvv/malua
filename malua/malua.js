@@ -132,6 +132,7 @@ class MMalua extends HTMLElement {
         element.placeholder = title;
       }
       element.textContent = title;
+      element.title = title;
     }
   }
 
@@ -160,6 +161,10 @@ class MMalua extends HTMLElement {
 
     if (value !== null) {
       element.value = value;
+
+      if (element.selectedIndex) {
+        element.selectedIndex = value;
+      }
     }
   }
 

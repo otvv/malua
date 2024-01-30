@@ -4,6 +4,20 @@
 "use strict";
 
 class MCheckBox extends MMalua {
+  // @brief: perform initial operations when mounting element
+  connectedCallback() {
+    const checkboxElement = this.shadowRoot.querySelector(".m-checkbox");
+
+    // set color button default color
+    this.setState(
+      checkboxElement,
+      this.getAttribute("checked") ||
+        this.getAttribute("value") ||
+        this.getAttribute("state") ||
+        false
+    );
+  }
+
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ..
@@ -47,13 +61,6 @@ class MCheckBox extends MMalua {
     attributesToSet.forEach((attribute) => {
       this.setAttributeWhenPresent(checkboxElement, attribute);
     });
-
-    // set default checkbox state
-    const elementState =
-      this.getAttribute("checked") ||
-      this.getAttribute("value") ||
-      this.getAttribute("state");
-    this.setState(checkboxElement, elementState);
 
     // set checkbox div box abs pos
     const elementPosition = [

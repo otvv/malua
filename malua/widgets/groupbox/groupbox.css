@@ -19,6 +19,9 @@
   align-items: stretch;
 }
 
+/*
+    groupbox label
+*/
 .m-groupbox-label {
   display: inline;
   padding-inline-start: 0px;

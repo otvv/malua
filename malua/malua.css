@@ -60,6 +60,7 @@ hr {
   --text-color-title: #ffffff;
   --text-color-normal: #252525ff;
   --text-color-accent: #9ee763;
+  --text-color-accent-alt: #8bb667;
   --text-color-disabled: #6e6e6e;
   
   /* text flags */
@@ -128,6 +129,12 @@ hr {
   --modal-button-background: #2f302fb6;
   --modal-button-background-active: #e65454ab;
 
+  /* listbox widget colors */
+  --listbox-background: #ffffff9c;
+  --listbox-border: #6d6d6db0;
+  --listbox-option-hover: #ffffff3f;
+  --listbox-option-border: #a8a8a89c;
+  --listbox-option-checked: #a3e07acb;
 }
 
 /* Shaders */

@@ -4,6 +4,17 @@
 "use strict";
 
 class MColor extends MMalua {
+  // @brief: perform initial operations when mounting element
+  connectedCallback() {
+    const colorElement = this.shadowRoot.querySelector(".m-color-button");
+
+    // set color button default color
+    this.setValue(
+      colorElement,
+      this.getAttribute("color") || this.getAttribute("value") || "#ffffff"
+    );
+  }
+
   // @brief: widget constructor (don't touch this unless you know what you're doing!)
   constructor() {
     // ...
@@ -52,11 +63,6 @@ class MColor extends MMalua {
     // set colorpicker label
     const elementLabel = this.getAttribute("label");
     this.setLabel(colorButtonLabelElement, elementLabel, true);
-
-    // set default color
-    const elementValue =
-      this.getAttribute("color") || this.getAttribute("value");
-    this.setValue(colorButtonElement, elementValue);
 
     // set colorpicker div box abs pos
     const elementPosition = [
