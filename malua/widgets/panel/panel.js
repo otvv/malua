@@ -7,8 +7,8 @@ class MPanel extends MMalua {
   // @brief: disables the ability to right click inside the panel
   //
   // @arguments: `element` = main panel element
-  // `headerElement` = header element wrapper
-  // (in case the user wants to disable right click on it)
+  //             `headerElement` = header element wrapper
+  //             (in case the user wants to disable right click on it)
   disableRightClick = (element, headerElement = null) => {
     element.addEventListener("contextmenu", (event) => event.preventDefault());
     headerElement.addEventListener("contextmenu", (event) =>
@@ -19,7 +19,7 @@ class MPanel extends MMalua {
   // @brief: handles panel dragging (movement)
   //
   // @arguments: `element` = main panel element (what will be dragged alongside the 'draggable-area')
-  // `headerElement` = headerElement ('area-to-drag')
+  //             `headerElement` = headerElement ('area-to-drag')
   handleMovement = (element, headerElement) => {
     // 'static' mutable variables
     let animFrameId = 0;

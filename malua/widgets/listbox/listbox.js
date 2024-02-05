@@ -7,8 +7,8 @@ class MListBox extends MMalua {
   // @brief: this function will add a new entry/option into the listbox element
   //
   // @arguments: `listbox` = listbox element that will be used to add new options
-  // `name` = entry/option name
-  // `value` = entry value
+  //             `name` = entry/option name
+  //             `value` = entry value
   addOption(listbox, name, value = 0) {
     if (listbox === null) {
       return;
@@ -47,7 +47,7 @@ class MListBox extends MMalua {
     const listboxElement = this.shadowRoot.querySelector(".m-listbox");
 
     // set listbox default index
-    this.setValue(listboxElement, 0);
+    this.setIndex(listboxElement, 0);
   }
 
   // @brief: widget constructor (don't touch this unless you know what you're doing!)

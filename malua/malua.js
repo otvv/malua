@@ -138,7 +138,7 @@ class MMalua extends HTMLElement {
 
   // @brief: function to set the placeholder text of a HTML element
   //
-  // @arguments: `element` = element to set the title
+  // @arguments: `element` = element to set the placeholder
   //             `placeholder` = placeholder text label (string)
   setPlaceholder(element, placeholder = null) {
     if (element === null) {
@@ -152,7 +152,7 @@ class MMalua extends HTMLElement {
 
   // @brief: function to set a specific value of a HTML element
   //
-  // @arguments: `element` = element to set the title
+  // @arguments: `element` = element to set the value
   //             `value` = element value (any)
   setValue(element, value = null) {
     if (element === null) {
@@ -161,9 +161,23 @@ class MMalua extends HTMLElement {
 
     if (value !== null) {
       element.value = value;
+    }
+  }
 
-      if (element.selectedIndex) {
-        element.selectedIndex = value;
+  // @brief: function to set a specific index of a HTML element
+  // (useful for ListBoxes and ComboBoxes)
+  //
+  // @arguments: `element` = element to set the index
+  //             `index` = element index (number)
+  setIndex(element, index = 0) {
+    if (element === null) {
+      return;
+    }
+
+    if (index !== 0) {
+
+      if (element.selectedIndex !== null) {
+        element.selectedIndex = index;
       }
     }
   }
@@ -171,7 +185,7 @@ class MMalua extends HTMLElement {
   // @brief: function to set the state of a HTML element
   // (checked, opened, etc)
   //
-  // @arguments: `element` = element to set the title
+  // @arguments: `element` = element to set the state
   //             `state` = element state (string)
   setState(element, state = "false") {
     if (element === null) {
