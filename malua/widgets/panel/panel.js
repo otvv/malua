@@ -119,7 +119,7 @@ class MPanel extends MMalua {
           <main class="m-panel">
           <header class="m-panel-header">
           <span class='m-panel-header-image-container'>
-          <img class='m-figure'></img>
+          <img alt="figure" class='m-figure'></img>
           <a class="m-panel-header-label"></a>
           </span>
           </header>
@@ -148,6 +148,7 @@ class MPanel extends MMalua {
     const attributesToSet = [
       "label",
       "id",
+      "alt",
       "shader",
       "effect",
       "x",
@@ -165,7 +166,7 @@ class MPanel extends MMalua {
 
     // set panel size
     const elementSize = [
-      this.getAttribute("width") || "fit-content",
+      this.getAttribute("width") || "moz-fit-content" || "fit-content",
       this.getAttribute("height"),
     ];
     this.setSize(panelElement, elementSize);
@@ -196,7 +197,7 @@ class MPanel extends MMalua {
     }
 
     // set panel header and widget area size
-    const panelHeaderWidth = this.getAttribute("width") || "fit-content";
+    const panelHeaderWidth = this.getAttribute("width") || "moz-fit-content" || "fit-content";
     this.setWidth(panelHeaderElement, panelHeaderWidth);
 
     // set panel abs pos
@@ -214,7 +215,8 @@ class MPanel extends MMalua {
     // set panel image source and alt text
     if (this.hasAttribute("src")) {
       panelImageElement.src = this.getAttribute("src");
-      panelImageElement.alt = this.getAttribute("alt");
+
+      this.setPlaceholder(panelImageElement, this.getAttribute("alt"));
     } else {
       panelImageElement.style.display = "none";
     }

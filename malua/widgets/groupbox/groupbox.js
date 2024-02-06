@@ -15,7 +15,7 @@ class MGroupBox extends MMalua {
           <link rel="stylesheet" href="malua/malua.css">
           <link rel="stylesheet" href="malua/widgets/groupbox/groupbox.css">
           <fieldset class="m-groupbox">
-          <legend class="m-groupbox-label"></legend>
+          <legend class="m-groupbox-label"/>
           </fieldset>
         `;
 

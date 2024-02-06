@@ -29,9 +29,14 @@ class MListBox extends MMalua {
   // @brief: this function returns the index of the selected option
   getIndex() {
     const listboxElement = this.shadowRoot.querySelector(".m-listbox");
+    
+    if (listboxElement === null) {
+      return;
+    }
+
     const selectedIndex = listboxElement.selectedIndex;
 
-    return selectedIndex;
+    return selectedIndex || 0;
   }
 
   // @brief: this function returns the value of the currently selected option
@@ -92,6 +97,7 @@ class MListBox extends MMalua {
     // set listbox label
     const elementLabel = this.getAttribute("label");
     this.setLabel(listboxLabelElement, elementLabel);
+    listboxElement.title = elementLabel;
 
     // set listbox abs pos
     const elementPosition = [
@@ -107,9 +113,10 @@ class MListBox extends MMalua {
     ];
     this.setSize(listboxElement, elementSize);
 
-    // set listbox id
+    // set listbox id and label attribution
     if (this.hasAttribute("id")) {
       listboxElement.setAttribute("id", this.getAttribute("id"));
+      listboxLabelElement.setAttribute("for", listboxElement.id);
     }
 
     // this fixes some incompatibility issues

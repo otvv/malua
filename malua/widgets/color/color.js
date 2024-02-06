@@ -63,6 +63,11 @@ class MColor extends MMalua {
     // set colorpicker label
     const elementLabel = this.getAttribute("label");
     this.setLabel(colorButtonLabelElement, elementLabel, true);
+    colorButtonElement.title = elementLabel;
+
+    // set colorpicker placeholder
+    const elementPlaceholder = this.getAttribute("placeholder");
+    this.setPlaceholder(colorButtonElement, elementPlaceholder);
 
     // set colorpicker div box abs pos
     const elementPosition = [
@@ -73,14 +78,10 @@ class MColor extends MMalua {
 
     // set colorpicker box div size
     const elementSize = [
-      this.getAttribute("width") || "fit-content",
+      this.getAttribute("width") || "moz-fit-content" || "fit-content",
       this.getAttribute("height"),
     ];
     this.setSize(boxDivElement, elementSize);
-
-    // set slider placeholder
-    const elementPlaceholder = this.getAttribute("placeholder");
-    this.setPlaceholder(colorButtonElement, elementPlaceholder);
 
     // set colorpicker id and string attribution
     if (this.hasAttribute("id")) {

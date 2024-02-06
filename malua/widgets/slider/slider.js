@@ -100,6 +100,7 @@ class MSlider extends MMalua {
     // set slider label
     const elementLabel = this.getAttribute("label");
     this.setLabel(sliderLabelElement, elementLabel, true);
+    sliderElement.title = elementLabel;
 
     // set slider placeholder
     const elementPlaceholder = this.getAttribute("placeholder");

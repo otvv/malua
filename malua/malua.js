@@ -129,10 +129,18 @@ class MMalua extends HTMLElement {
 
     if (title !== null) {
       if (skipPlaceholder === false) {
-        element.placeholder = title;
+        if (element.placeholder !== null) {
+          element.placeholder = title;
+        }
       }
-      element.textContent = title;
-      element.title = title;
+
+      if (element.textContent !== null) {
+        element.textContent = title;
+      }
+
+      if (element.title !== null) {
+        element.title = title;
+      }
     }
   }
 
@@ -147,6 +155,10 @@ class MMalua extends HTMLElement {
 
     if (placeholder !== null) {
       element.placeholder = placeholder;
+
+      if (element.alt !== null) {
+        element.alt = placeholder;
+      }
     }
   }
 
@@ -175,7 +187,6 @@ class MMalua extends HTMLElement {
     }
 
     if (index !== 0) {
-
       if (element.selectedIndex !== null) {
         element.selectedIndex = index;
       }
@@ -206,19 +217,32 @@ class MMalua extends HTMLElement {
   //
   // @arguments: `element` = element to set the shader
   //             `shader` = shader param name (blur, glass, etc)
+  //             `skipLabel` = this will tell the function to skip label related elements from having blur applied
+  //              defaults to true
   //             `additional` = additional classes (in case the widget has any/needs one)
   //              defaults to null
-  setShader(element, shader, additional = null) {
-    if (element === null) {
+  setShader(element, shader, skipLabel = true, additional = null) {
+    if (!(element instanceof Element)) {
       return;
     }
-
+  
     if (shader) {
-      if (additional !== null) {
-        element.classList.add(shader, additional);
-      } else {
-        element.classList.add(shader);
-      }
+      const elementsToApplyShader = !skipLabel
+        ? Array.from(element.children).filter(
+            (child) =>
+              child.tagName &&
+              (child.tagName.toLowerCase() === "label" ||
+                child.tagName.toLowerCase() === "legend")
+          )
+        : [element];
+  
+      elementsToApplyShader.forEach((element) => {
+        if (additional !== null) {
+          element.classList.add(shader, additional);
+        } else {
+          element.classList.add(shader);
+        }
+      });
     }
   }
 

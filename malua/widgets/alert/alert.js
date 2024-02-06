@@ -88,11 +88,12 @@ class MAlert extends MMalua {
       this.setShader(
         alertSpanElement,
         elementShader,
+        true,
         `m-alert-${this.getAttribute("type")}`
       );
     } else {
       // set alert shader
-      this.setShader(alertSpanElement, elementShader, "m-alert-default");
+      this.setShader(alertSpanElement, elementShader, true, "m-alert-default");
     }
 
     // set alert label

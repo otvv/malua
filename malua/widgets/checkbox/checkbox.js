@@ -71,7 +71,7 @@ class MCheckBox extends MMalua {
 
     // set checkbox box div size
     const elementSize = [
-      this.getAttribute("width") || "fit-content",
+      this.getAttribute("width") || "moz-fit-content" || "fit-content",
       this.getAttribute("height"),
     ];
     this.setSize(boxDivElement, elementSize);
@@ -79,6 +79,7 @@ class MCheckBox extends MMalua {
     // set checkbox label
     const elementLabel = this.getAttribute("label");
     this.setLabel(checkboxLabelElement, elementLabel, true);
+    checkboxElement.title = elementLabel;
 
     // set checkbox placeholder
     const elementPlaceholder = this.getAttribute("placeholder");

@@ -11,6 +11,7 @@
   margin: auto 5px;
 
   width: 250px;
+  height: moz-fit-content;
   height: fit-content;
 
   border-radius: 3px;
