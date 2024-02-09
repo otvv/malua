@@ -1,12 +1,10 @@
 /*
 */
 
-
 /*
     listbox widget geometry
 */
 .m-listbox {
-  display: flex;
   overflow-y: auto;
   margin: auto 5px;
 
@@ -14,7 +12,7 @@
   height: moz-fit-content;
   height: fit-content;
 
-  border-radius: 3px;
+  border-radius: 5px;
   border: 1px solid var(--listbox-border);
   background-color: var(--listbox-background);
 
@@ -36,6 +34,8 @@
 .m-listbox option::selection,
 .m-listbox option:active {
   background-color: var(--listbox-option-checked) !important;
+
+  appearance: none;
 }
 
 /*

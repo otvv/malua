@@ -39,7 +39,7 @@ class MSlider extends MMalua {
           <label class="m-slider-label"></label>
           <div class="m-slider-box">
             <input class="m-slider" type="range">
-            <output class='m-slider-output-text'/>
+            <output class="m-slider-output-text"/>
           </div>
         `;
 
@@ -84,7 +84,7 @@ class MSlider extends MMalua {
 
     // set slider box div size
     const elementSize = [
-      this.getAttribute("width"),
+      this.getAttribute("width") || "moz-fit-content" || "fit-content",
       this.getAttribute("height"),
     ];
     this.setSize(sliderElement, elementSize);
