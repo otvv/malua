@@ -17,6 +17,6 @@ Malua was born with a simple premise, to replace <a href="https://github.com/otv
 
 Malua still requires for you to use native HTML for some things such as handling page background, additional elements _(headers, footers, etc)_ and some other minor stuff such as linking widgets so you can actually use/handle them in JavaScript. If you know the basic of HTML5/JS you won't have any problems. After all, malua widgets are works just like any other HTML5 element.
 
-For a few people malua might not be ideal since it is missing a few widgets for a full fledged GUI toolkit such as **TabPanels**, **ComboBoxes**/**SelectionBoxes** and **ListBoxes** _(these widgets are going to be implemented after release.)_.
+For a few people malua might not be ideal since it is missing a few widgets for a full fledged GUI toolkit such as **TabPanels**, **ComboBoxes**/**SelectionBoxes**. _(these widgets are going to be implemented after release.)_
 
 But for a web ui perspective malua works very well as you can see here: <a href="https://wallpaperize.vercel.app">wallpaperize!</a>
