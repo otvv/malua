@@ -31,8 +31,7 @@ class MAlert extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-    <link rel="stylesheet" href="malua/malua.css">
-    <link rel="stylesheet" href="malua/widgets/alert/alert.css">
+    ${globalMaluaStyleInclude}
     <div class="m-alert-box">
       <span class="m-alert">
       <a class="m-alert-label"></a>

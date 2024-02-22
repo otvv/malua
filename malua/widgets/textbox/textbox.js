@@ -36,8 +36,7 @@ class MTextBox extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-          <link rel="stylesheet" href="malua/malua.css">
-          <link rel="stylesheet" href="malua/widgets/textbox/textbox.css">
+          ${globalMaluaStyleInclude}
           <input class="m-textbox" type="text">
         `;
 

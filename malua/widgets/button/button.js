@@ -12,8 +12,7 @@ class MButton extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-          <link rel="stylesheet" href="malua/malua.css">
-          <link rel="stylesheet" href="malua/widgets/button/button.css">
+          ${globalMaluaStyleInclude}
           <button class="m-button" type="button">
         `;
 

@@ -34,18 +34,19 @@ class MSlider extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-          <link rel="stylesheet" href="malua/malua.css">
-          <link rel="stylesheet" href="malua/widgets/slider/slider.css">
-          <label class="m-slider-label"></label>
-          <div class="m-slider-box">
+          ${globalMaluaStyleInclude}
+          <div class="m-slider-container">
+            <label class="m-slider-label"></label>
+          </div>
+          <span class="m-slider-box">
             <input class="m-slider" type="range">
             <output class="m-slider-output-text"/>
-          </div>
+          </span>
         `;
 
     // range input wrapper and box div
     const sliderElement = shadow.querySelector("input");
-    const boxDivElement = shadow.querySelector("div");
+    const boxDivElement = shadow.querySelector("span");
 
     // range input title
     const sliderLabelElement = shadow.querySelector("label");
@@ -88,6 +89,14 @@ class MSlider extends MMalua {
       this.getAttribute("height"),
     ];
     this.setSize(sliderElement, elementSize);
+
+    // set slider min max values (clamping)
+    const elementClamp = [
+      this.getAttribute("min") || "0",
+      this.getAttribute("max") || "100"
+    ];
+    sliderElement.min = elementClamp[0];
+    sliderElement.max = elementClamp[1];
 
     // in case the slider has a sufix
     if (sufix) {

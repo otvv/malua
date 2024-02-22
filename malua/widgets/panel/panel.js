@@ -113,9 +113,7 @@ class MPanel extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-          <link rel="stylesheet" href="malua/malua.css">
-          <link rel="stylesheet" href="malua/widgets/panel/panel.css">
-          <link rel="stylesheet" href="malua/widgets/figure/figure.css">
+          ${globalMaluaStyleInclude}
           <main class="m-panel">
           <header class="m-panel-header">
           <span class='m-panel-header-image-container'>
@@ -188,7 +186,10 @@ class MPanel extends MMalua {
       this.setSize(panelImageElement, panelImageSize);
 
       // set panel image radius
-      panelImageElement.style.borderRadius = "50%";
+      panelImageElement.style.borderRadius = "50px";
+
+      // disable dragging from panel image
+      panelImageElement.setAttribute("draggable", "false");
 
       // set panel widget area initial position
       const panelWidgetAreaTopPosition = "60";

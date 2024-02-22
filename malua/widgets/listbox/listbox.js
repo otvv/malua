@@ -63,8 +63,7 @@ class MListBox extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-    <link rel="stylesheet" href="malua/malua.css">
-    <link rel="stylesheet" href="malua/widgets/listbox/listbox.css">
+    ${globalMaluaStyleInclude}
     <label class="m-listbox-label"></label>
     <select class="m-listbox" multiple>  
     </select>  

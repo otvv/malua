@@ -47,9 +47,7 @@ class MModal extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-    <link rel="stylesheet" href="malua/malua.css">
-    <link rel="stylesheet" href="malua/widgets/modal/modal.css">
-    <link rel="stylesheet" href="malua/widgets/button/button.css">
+    ${globalMaluaStyleInclude}
     <button class="m-button" style="position: inherit;"></button>
     <section class="m-modal-background" style="display: none;">
       <div class="m-modal-box">
@@ -80,7 +78,6 @@ class MModal extends MMalua {
       "label",
       "placeholder",
       "shader",
-      "type",
       "x",
       "y",
       "top",

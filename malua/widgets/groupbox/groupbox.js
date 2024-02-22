@@ -12,8 +12,7 @@ class MGroupBox extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-          <link rel="stylesheet" href="malua/malua.css">
-          <link rel="stylesheet" href="malua/widgets/groupbox/groupbox.css">
+          ${globalMaluaStyleInclude}
           <fieldset class="m-groupbox">
           <legend class="m-groupbox-label"/>
           </fieldset>

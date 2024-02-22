@@ -4,6 +4,11 @@
 /*
     slider widget geometry
 */
+.m-slider-container {
+  display: flex;
+  margin-left: 25px;
+}
+
 .m-slider-box {
   display: flex;
 
@@ -67,12 +72,12 @@
   appearance: none;
 }
 
+
 /*
     slider label and output text
 */
 .m-slider-label {
   font-size: 13px;
-  margin-left: 15px;
 
   color: var(--text-color-normal);
 }

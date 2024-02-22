@@ -23,8 +23,7 @@ class MColor extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-          <link rel="stylesheet" href="malua/malua.css">
-          <link rel="stylesheet" href="malua/widgets/color/color.css">
+          ${globalMaluaStyleInclude}
           <div class="m-color-button-box">
           <input class="m-color-button" type="color">
           <label class="m-color-button-label"></label>

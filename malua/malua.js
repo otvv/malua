@@ -3,6 +3,9 @@
 
 "use strict";
 
+// global malua styles import 
+const globalMaluaStyleInclude = "<link rel='stylesheet' href='malua/malua.css'/>"
+
 class MMalua extends HTMLElement {
   // @brief: function to set the absolute position of a HTML element
   //
@@ -71,9 +74,14 @@ class MMalua extends HTMLElement {
     if (element === null) {
       return;
     }
-
-    element.style.width = `${width}px`;
-    element.style.height = `${height}px`;
+    // img size alternative
+    if (element.nodeName === "img") {
+      element.width = `${size[0]}px`;
+      element.height = `${size[0]}px`;
+    } else {
+      element.style.width = `${size[0]}px`;
+      element.style.height = `${size[1]}px`;
+    }
   }
   setSize(element, size) {
     if (element === null) {
@@ -81,8 +89,14 @@ class MMalua extends HTMLElement {
     }
 
     if (size) {
-      element.style.width = `${size[0]}px`;
-      element.style.height = `${size[1]}px`;
+      // img size alternative
+      if (element.nodeName === "img") {
+        element.width = `${size[0]}px`;
+        element.height = `${size[0]}px`;
+      } else {
+        element.style.width = `${size[0]}px`;
+        element.style.height = `${size[1]}px`;
+      }
     }
   }
 

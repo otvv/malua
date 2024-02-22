@@ -1,6 +1,20 @@
 /*
 */
 
+/* Framework style imports */
+@import "widgets/alert/alert.css";
+@import "widgets/button/button.css";
+@import "widgets/checkbox/checkbox.css";
+@import "widgets/color/color.css";
+@import "widgets/figure/figure.css";
+@import "widgets/groupbox/groupbox.css";
+@import "widgets/listbox/listbox.css";
+@import "widgets/modal/modal.css";
+@import "widgets/panel/panel.css";
+@import "widgets/slider/slider.css";
+@import "widgets/textbox/textbox.css";
+
+
 /* Defaults */
 * {
   top: 0;
@@ -22,7 +36,6 @@
   user-select: none !important;
   -webkit-user-drag: none !important;
   -moz-user-drag: none !important;
-  user-zoom: fixed;
 
   /* Font settings */
   font-family: 'Segoe UI', sans-serif;

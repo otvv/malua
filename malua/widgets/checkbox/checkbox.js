@@ -26,8 +26,7 @@ class MCheckBox extends MMalua {
     // create shadow root
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
-          <link rel="stylesheet" href="malua/malua.css">
-          <link rel="stylesheet" href="malua/widgets/checkbox/checkbox.css">
+          ${globalMaluaStyleInclude}
           <div class="m-checkbox-box">
           <input class="m-checkbox" type="checkbox">
           <label class="m-checkbox-label"></label>
