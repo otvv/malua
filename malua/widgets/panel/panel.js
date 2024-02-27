@@ -19,8 +19,13 @@ class MPanel extends MMalua {
   // @brief: handles panel dragging (movement)
   //
   // @arguments: `element` = main panel element (what will be dragged alongside the 'draggable-area')
-  //             `headerElement` = headerElement ('area-to-drag')
-  handleMovement = (element, headerElement) => {
+  //             `headerElement` = header element ('area-to-drag')
+  //             `static` = this can be enabled to make the panel static (non-draggable)
+  handleMovement = (element, headerElement, isStatic) => {
+    if (isStatic === true) {
+      return;
+    }
+
     // 'static' mutable variables
     let animFrameId = 0;
     let isMouseDown = false;
@@ -155,6 +160,7 @@ class MPanel extends MMalua {
       "left",
       "width",
       "height",
+      "static",
     ];
 
     // set attributes if present
@@ -223,7 +229,11 @@ class MPanel extends MMalua {
     }
 
     // handle panel movement
-    this.handleMovement(panelElement, panelHeaderElement);
+    if (this.hasAttribute("static")) {
+      this.handleMovement(panelElement, panelHeaderElement, true);
+    } else {
+      this.handleMovement(panelElement, panelHeaderElement, false);
+    }
 
     // disable right clicking
     this.disableRightClick(panelElement, panelHeaderElement);
