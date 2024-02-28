@@ -96,8 +96,9 @@ hr {
 
   /* button widget colors */
   --button-background: #ffffff85;
-  --button-border: #6d6d6d;
-  --button-border-active: #3b3b3bb9;
+  --button-border: #bdbdbd3f;
+  --button-border-hover: #a8da79d2;
+  --button-border-active: #6d6d6da1;
 
   /* checkbox widget colors */
   --checkbox-box-background: #ffffff85;
@@ -133,6 +134,7 @@ hr {
   --color-box-background: #ffffff85;
   --color-background: #ffffff9c;
   --color-background-disabled: #5c5c5c9c;
+  --color-border: #bdbdbd3f;
 
   /* modal widget colors */
   --modal-background: #ffffff85;
