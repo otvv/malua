@@ -31,9 +31,9 @@
 
   transition: 0.1s;
 
-  width: moz-fit-content;
-  width: fit-content;
-
+  max-width: 84%;
+  min-width: fit-content;
+  
   height: moz-fit-content;
   height: fit-content;
 }

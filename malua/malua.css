@@ -6,6 +6,7 @@
 @import "widgets/button/button.css";
 @import "widgets/checkbox/checkbox.css";
 @import "widgets/color/color.css";
+@import "widgets/combobox/combobox.css";
 @import "widgets/figure/figure.css";
 @import "widgets/groupbox/groupbox.css";
 @import "widgets/listbox/listbox.css";
@@ -129,6 +130,7 @@ hr {
   /* textbox widget colors */
   --textbox-background: #ffffff85;
   --textbox-border-hover: #9c9c9cb9;
+  --textbox-border-active: #6d6d6da1;
 
   /* color-picker widget colors */
   --color-box-background: #ffffff85;
@@ -138,17 +140,25 @@ hr {
 
   /* modal widget colors */
   --modal-background: #ffffff85;
-  --modal-border: #6d6d6d;
+  --modal-border: #bdbdbd3f;
   --modal-background-active: #0000004b;
   --modal-button-background: #2f302fb6;
   --modal-button-background-active: #e65454ab;
 
   /* listbox widget colors */
-  --listbox-background: #ffffff9c;
-  --listbox-border: #6d6d6db0;
+  --listbox-background: #ffffff85;
+  --listbox-border: #bdbdbd3f;
   --listbox-option-hover: #ffffff3f;
   --listbox-option-border: #a8a8a89c;
   --listbox-option-checked: #a3e07acb;
+
+  /* combobox widget colors */
+  --combobox-background: #ffffff85;
+  --combobox-border: #bdbdbd3f;
+  --combobox-border-active: #6d6d6da1;
+  --combobox-option-hover: #ffffff3f;
+  --combobox-option-border: #a8a8a89c;
+  --combobox-option-checked: #a3e07acb;
 }
 
 /* Shaders */

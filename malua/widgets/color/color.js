@@ -24,15 +24,15 @@ class MColor extends MMalua {
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
           ${globalMaluaStyleInclude}
-          <div class="m-color-button-box">
+          <span class="m-color-button-box">
           <input class="m-color-button" type="color">
           <label class="m-color-button-label"></label>
-          </div>
+          </span>
         `;
 
     // color button wrapper and box div
     const colorButtonElement = shadow.querySelector("input");
-    const boxDivElement = shadow.querySelector("div");
+    const boxSpanElement = shadow.querySelector("div");
 
     // color input title
     const colorButtonLabelElement = shadow.querySelector("label");
@@ -73,14 +73,14 @@ class MColor extends MMalua {
       this.getAttribute("x") || this.getAttribute("left"),
       this.getAttribute("y") || this.getAttribute("top"),
     ];
-    this.setPosition(boxDivElement, elementPosition);
+    this.setPosition(boxSpanElement, elementPosition);
 
     // set colorpicker box div size
     const elementSize = [
       this.getAttribute("width") || "moz-fit-content" || "fit-content",
       this.getAttribute("height"),
     ];
-    this.setSize(boxDivElement, elementSize);
+    this.setSize(boxSpanElement, elementSize);
 
     // set colorpicker id and string attribution
     if (this.hasAttribute("id")) {

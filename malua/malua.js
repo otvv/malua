@@ -10,11 +10,11 @@ class MMalua extends HTMLElement {
   // @brief: function to set the absolute position of a HTML element
   //
   // @arguments: `element` = element to set the position
-  //             `top` = top position (Y in pixels)
   //             `left` = left position (X in pixels)
+  //             `top` = top position (Y in pixels)
   //
-  // @overloads: `position` = a 2d array containing the position (left and right in pixels)
-  setPosition(element, top, left) {
+  // @overloads: `position` = a 2d array containing the position (left and top in pixels)
+  setPosition(element, left, top) {
     if (element === null) {
       return;
     }
@@ -33,6 +33,60 @@ class MMalua extends HTMLElement {
     }
   }
 
+  // @brief: function to set the marging of a HTML element
+  //
+  // @arguments: `element` = element to set the position
+  //             `leftMargin` = left margin (in pixels)
+  //             `topMargin` = top margin (in pixels)
+  //
+  // @overloads: `margin` = a 2d array containing the margin (left and top in pixels)
+  setMargin(element, leftMargin, topMargin) {
+    if (element === null) {
+      return;
+    }
+
+    element.style.marginLeft = `${leftMargin}px`;
+    element.style.marginTop = `${topMargin}px`;
+  }
+  setMargin(element, margin) {
+    if (element === null) {
+      return;
+    }
+
+    if (margin) {
+      element.style.marginLeft = `${margin[0]}px`;
+      element.style.marginTop = `${margin[1]}px`;
+    }
+  }
+
+  // @brief: function to set the absolute left position of a HTML element
+  //
+  // @arguments: `element` = element to set the position
+  //             `left` = left position (X in pixels)
+  setLeftPosition(element, left) {
+    if (element === null) {
+      return;
+    }
+
+    if (left) {
+      element.style.left = `${left}px`;
+    }
+  }
+
+  // @brief: function to set the left margin of a HTML element
+  //
+  // @arguments: `element` = element to set the position
+  //             `leftMargin` = left margin (in pixels)
+  setLeftMargin(element, leftMargin) {
+    if (element === null) {
+      return;
+    }
+
+    if (leftMargin) {
+      element.style.marginLeft = `${leftMargin}px`;
+    }
+  }
+
   // @brief: function to set the absolute top position of a HTML element
   //
   // @arguments: `element` = element to set the position
@@ -47,17 +101,17 @@ class MMalua extends HTMLElement {
     }
   }
 
-  // @brief: function to set the absolute top position of a HTML element
+  // @brief: function to set the top margin of a HTML element
   //
   // @arguments: `element` = element to set the position
-  //             `left` = left position (X in pixels)
-  setLeftPosition(element, left) {
+  //             `topMargin` = top margin (in pixels)
+  setTopMargin(element, topMargin) {
     if (element === null) {
       return;
     }
 
-    if (left) {
-      element.style.left = `${left}px`;
+    if (topMargin) {
+      element.style.marginTop = `${topMargin}px`;
     }
   }
 
@@ -76,11 +130,11 @@ class MMalua extends HTMLElement {
     }
     // img size alternative
     if (element.nodeName === "img") {
-      element.width = `${size[0]}px`;
-      element.height = `${size[0]}px`;
+      element.width = `${width}px`;
+      element.height = `${height}px`;
     } else {
-      element.style.width = `${size[0]}px`;
-      element.style.height = `${size[1]}px`;
+      element.style.width = `${width}px`;
+      element.style.height = `${height}px`;
     }
   }
   setSize(element, size) {
@@ -92,7 +146,7 @@ class MMalua extends HTMLElement {
       // img size alternative
       if (element.nodeName === "img") {
         element.width = `${size[0]}px`;
-        element.height = `${size[0]}px`;
+        element.height = `${size[1]}px`;
       } else {
         element.style.width = `${size[0]}px`;
         element.style.height = `${size[1]}px`;
@@ -136,7 +190,7 @@ class MMalua extends HTMLElement {
   //             `title` = title/text label (string)
   //             `skipPlaceHolder` = tell the framework to skip naming the placeholder
   //              (some widgets my need a different placeholder text)
-  setLabel(element, title = null, skipPlaceholder = false) {
+  setLabel(element, title, skipPlaceholder = false) {
     if (element === null) {
       return;
     }

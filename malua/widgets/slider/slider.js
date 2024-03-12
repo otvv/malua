@@ -35,7 +35,7 @@ class MSlider extends MMalua {
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
           ${globalMaluaStyleInclude}
-          <div class="m-slider-container">
+          <div class="m-slider-label-container">
             <label class="m-slider-label"></label>
           </div>
           <span class="m-slider-box">
@@ -46,10 +46,11 @@ class MSlider extends MMalua {
 
     // range input wrapper and box div
     const sliderElement = shadow.querySelector("input");
-    const boxDivElement = shadow.querySelector("span");
+    const boxSpanElement = shadow.querySelector("span");
 
     // range input title
     const sliderLabelElement = shadow.querySelector("label");
+    const labelContainerElement = shadow.querySelector("div");
 
     // range input sufix and output
     const sufix = this.getAttribute("sufix") || "";
@@ -83,6 +84,11 @@ class MSlider extends MMalua {
     ];
     this.setPosition(sliderElement, elementPosition);
 
+    // set slider label aligment
+    const minusOffset = 7; // px (feel free to change)
+    const elementLabelPosition = (boxSpanElement.getBoundingClientRect().left - +minusOffset); // this fixes the wrong label alignemnt
+    this.setLeftMargin(sliderLabelElement, elementLabelPosition);
+
     // set slider box div size
     const elementSize = [
       this.getAttribute("width") || "moz-fit-content" || "fit-content",
@@ -93,7 +99,7 @@ class MSlider extends MMalua {
     // set slider min max values (clamping)
     const elementClamp = [
       this.getAttribute("min") || "0",
-      this.getAttribute("max") || "100"
+      this.getAttribute("max") || "100",
     ];
     sliderElement.min = elementClamp[0];
     sliderElement.max = elementClamp[1];
@@ -101,7 +107,7 @@ class MSlider extends MMalua {
     // in case the slider has a sufix
     if (sufix) {
       // set a fixed box height and padding
-      this.setHeight(boxDivElement, "35");
+      this.setHeight(boxSpanElement, "35"); // px
       sliderOutput.style.paddingTop = "10px";
       sliderOutput.style.paddingBottom = "10px";
     }

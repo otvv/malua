@@ -34,4 +34,10 @@
   box-shadow: 0 0 5px 1px var(--shadow);
 
   border-radius: 5px;
+
+  transition: 0.2s;
+}
+
+.m-figure:hover {
+  box-shadow: 0 0 5px 1px var(--colored-shadow);
 }

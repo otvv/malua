@@ -27,15 +27,15 @@ class MCheckBox extends MMalua {
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
           ${globalMaluaStyleInclude}
-          <div class="m-checkbox-box">
-          <input class="m-checkbox" type="checkbox">
-          <label class="m-checkbox-label"></label>
-          </div>
+          <span class="m-checkbox-box">
+            <input class="m-checkbox" type="checkbox">
+            <label class="m-checkbox-label"></label>
+          </span>
         `;
 
     // checkbox input wrapper and box div
     const checkboxElement = shadow.querySelector("input");
-    const boxDivElement = shadow.querySelector("div");
+    const boxSpanElement = shadow.querySelector("span");
 
     // checkbox input title
     const checkboxLabelElement = shadow.querySelector("label");
@@ -66,14 +66,14 @@ class MCheckBox extends MMalua {
       this.getAttribute("x") || this.getAttribute("left"),
       this.getAttribute("y") || this.getAttribute("top"),
     ];
-    this.setPosition(boxDivElement, elementPosition);
+    this.setPosition(boxSpanElement, elementPosition);
 
     // set checkbox box div size
     const elementSize = [
       this.getAttribute("width") || "moz-fit-content" || "fit-content",
       this.getAttribute("height"),
     ];
-    this.setSize(boxDivElement, elementSize);
+    this.setSize(boxSpanElement, elementSize);
 
     // set checkbox label
     const elementLabel = this.getAttribute("label");
