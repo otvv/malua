@@ -32,7 +32,7 @@ class MColor extends MMalua {
 
     // color button wrapper and box div
     const colorButtonElement = shadow.querySelector("input");
-    const boxSpanElement = shadow.querySelector("div");
+    const boxSpanElement = shadow.querySelector("span");
 
     // color input title
     const colorButtonLabelElement = shadow.querySelector("label");
