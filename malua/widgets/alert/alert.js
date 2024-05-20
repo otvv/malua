@@ -83,16 +83,31 @@ class MAlert extends MMalua {
     const elementShader =
       this.getAttribute("shader") || this.getAttribute("effect");
     if (this.hasAttribute("type")) {
-      // set alert shader and type
-      this.setShader(
-        alertSpanElement,
-        elementShader,
-        true,
-        `m-alert-${this.getAttribute("type")}`
-      );
+
+      if (this.hasAttribute("shader") || this.getAttribute("effect")) {
+        // set alert shader and type
+        this.setShader(
+          alertSpanElement,
+          elementShader,
+          true,
+          `m-alert-${this.getAttribute("type")}`
+        );
+      } else {
+        // set alert shader and type
+        this.setShader(
+          alertSpanElement,
+          "blur", // fallback to blur in case no effect is set
+          true,
+          `m-alert-${this.getAttribute("type")}`
+        );
+      }
     } else {
       // set alert shader
-      this.setShader(alertSpanElement, elementShader, true, "m-alert-default");
+      if (this.hasAttribute("shader") || this.getAttribute("effect")) {
+        this.setShader(alertSpanElement, elementShader, true, "m-alert-default");
+      } else {
+        this.setShader(alertSpanElement, "blur", true, "m-alert-default"); // fallback to blur in case no effect is set
+      }
     }
 
     // set alert label

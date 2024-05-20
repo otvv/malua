@@ -8,8 +8,6 @@
   display: flex;
   justify-content: center;
   
-
-  display: flex;
   align-items: center;
 
   width: 85%;
@@ -73,6 +71,6 @@
 }
 
 .m-combobox-label {
-  margin: 2px auto;
+  margin: 5px auto;
   color: var(--text-color-normal);
 }

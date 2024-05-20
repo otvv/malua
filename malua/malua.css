@@ -2,18 +2,18 @@
 */
 
 /* Framework style imports */
-@import "widgets/alert/alert.css";
-@import "widgets/button/button.css";
-@import "widgets/checkbox/checkbox.css";
-@import "widgets/color/color.css";
-@import "widgets/combobox/combobox.css";
-@import "widgets/figure/figure.css";
-@import "widgets/groupbox/groupbox.css";
-@import "widgets/listbox/listbox.css";
-@import "widgets/modal/modal.css";
-@import "widgets/panel/panel.css";
-@import "widgets/slider/slider.css";
-@import "widgets/textbox/textbox.css";
+@import "../malua/widgets/alert/alert.css";
+@import "../malua/widgets/button/button.css";
+@import "../malua/widgets/checkbox/checkbox.css";
+@import "../malua/widgets/color/color.css";
+@import "../malua/widgets/combobox/combobox.css";
+@import "../malua/widgets/figure/figure.css";
+@import "../malua/widgets/groupbox/groupbox.css";
+@import "../malua/widgets/listbox/listbox.css";
+@import "../malua/widgets/modal/modal.css";
+@import "../malua/widgets/panel/panel.css";
+@import "../malua/widgets/slider/slider.css";
+@import "../malua/widgets/textbox/textbox.css";
 
 /* Defaults */
 * {
@@ -41,7 +41,7 @@
   -moz-user-drag: none !important;
 
   /* Font settings */
-  font-family: 'Segoe UI', sans-serif;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
   font-size: 14px;
   font-weight: var(--font-normal);
 }

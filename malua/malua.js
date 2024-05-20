@@ -3,8 +3,8 @@
 
 "use strict";
 
-// global malua styles import 
-const globalMaluaStyleInclude = "<link rel='stylesheet' href='malua/malua.css'/>"
+// Malua style import
+const globalMaluaStyleInclude = "<link rel='stylesheet' href='../malua/malua.css'/>"
 
 class MMalua extends HTMLElement {
   // @brief: function to set the absolute position of a HTML element

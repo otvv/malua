@@ -96,12 +96,20 @@ class MModal extends MMalua {
       this.getAttribute("width"),
       this.getAttribute("height"),
     ];
-    this.setSize(modalElement, elementSize);
+    this.setSize(modalOpenButtonElement, elementSize);
 
     // set the title of the modal 'trigger' button modal and abs position
     const elementLabel = this.getAttribute("label");
     this.setLabel(modalOpenButtonElement, elementLabel);
-    modalOpenButtonElement.style.position = "absolute";
+
+    const elementPosition = [
+      this.getAttribute("x") || this.getAttribute("left"),
+      this.getAttribute("y") || this.getAttribute("top"),
+    ];
+    this.setPosition(modalOpenButtonElement, elementPosition);
+
+    // trigger properties
+    modalOpenButtonElement.style.position = "fixed";
 
     // set modal shader
     const elementShader =

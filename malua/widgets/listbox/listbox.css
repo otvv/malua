@@ -4,6 +4,14 @@
 /*
     listbox widget geometry
 */
+.m-listbox-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: auto 5px;
+}
+
 .m-listbox {
   overflow-y: auto;
   margin: auto 5px;
@@ -42,6 +50,5 @@
     listbox label
 */
 .m-listbox-label {
-  position: inherit;
-  margin: auto 5px;
+  margin: 5px;
 }

@@ -5,3 +5,6 @@ malua/node_modules/
 .env
 malua/*.html
 *.html
+!malua/demo.html
+!demo.html
+.DS_store

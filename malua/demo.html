@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../repo/favicon.ico">
+  <title>Demo Environment</title>
+  
+  <!-- framework -->
+  <link rel="stylesheet" href="../malua/malua.css">
+  <script src="../malua/malua.js" defer></script>
+
+  <!-- framework widgets -->
+  <script src="../malua/widgets/alert/alert.js" defer></script>
+  <script src="../malua/widgets/button/button.js" defer></script>
+  <script src="../malua/widgets/checkbox/checkbox.js" defer></script>
+  <script src="../malua/widgets/color/color.js" defer></script>
+  <script src="../malua/widgets/combobox/combobox.js" defer></script>
+  <script src="../malua/widgets/figure/figure.js" defer></script>
+  <script src="../malua/widgets/groupbox/groupbox.js" defer></script>
+  <script src="../malua/widgets/listbox/listbox.js" defer></script>
+  <script src="../malua/widgets/modal/modal.js" defer></script>
+  <script src="../malua/widgets/panel/panel.js" defer></script>
+  <script src="../malua/widgets/slider/slider.js" defer></script>
+  <script src="../malua/widgets/textbox/textbox.js" defer></script>
+
+  <script>
+    const myFunction = () => {
+      alert("ayyylmao");
+    }
+  </script>
+
+</head>
+<style>
+  .demo-env {
+    background-color: #272727;
+  }
+</style>
+
+<body class="demo-env">
+
+  <m-modal x="26" y="25" width="360" height="50" text="This is a modal window." label="Click Me!" effect="blur">
+    <a>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</a>
+    <m-button label="Ok"></m-button>
+  </m-modal>
+
+  <m-alert label="This is a default alert!"></m-alert>
+  <m-alert label="This is a pulse alert!" type="pulse" effect="glass"></m-alert>
+  <m-alert label="This is a success alert!" type="success" effect="glass"></m-alert>
+  <m-alert label="This is a warning alert!" type="warning" effect="glass"></m-alert>
+  <m-alert label="This is an error alert!" type="error" effect="glass"></m-alert>
+
+  <m-panel left="10" top="10" label="Welcome, user." width="850" height="630" effect="blur" src="https://picsum.photos/184">
+    <m-groupbox label="Groupbox 1" width="413" height="280" effect="blur">
+      <m-checkbox label="Checkbox 1" id="checkbox1"></m-checkbox>
+      <m-checkbox label="Checkbox 2" id="checkbox2" checked="true"></m-checkbox>
+      <m-checkbox label="Checkbox 3" id="checkbox3" checked="false"></m-checkbox>
+      <m-slider label="Slider 1" value="10" min="0" max="500" id="slider1"></m-slider>
+      <m-slider label="Slider 2" min="0" max="100" sufix="ms" id="slider2"></m-slider>
+      <m-color label="Color 1" value="#abe52e" id="color1"></m-color>
+    </m-groupbox>
+
+    <!---->
+
+    <m-groupbox label="Groupbox 2" width="413" height="280" effect="blur">
+      <m-listbox label="Listbox 1" index="1" width="350" height="170">
+        <option>Item 1</option>
+        <option>Item 2</option>
+        <option>Item 3</option>
+        <option>Item 4</option>
+        <option>Item 5</option>
+        <option>Item 6</option>
+        <option>Item 7</option>
+        <option>Item 8</option>
+        <option>Item 9</option>
+        <option>Item 10</option>
+      </m-listbox>
+      <m-combobox label="Combobox 1" index="1">
+        <option>Item 1</option>
+        <option>Item 2</option>
+        <option>Item 3</option>
+        <option>Item 4</option>
+        <option>Item 5</option>
+      </m-combobox>
+
+    </m-groupbox>
+
+    <!---->
+
+    <m-groupbox label="Groupbox 3" width="413" height="280" effect="glass">
+      <m-button label="Button 1" width="350" height="30" onclick="myFunction()"></m-button>
+      <m-figure alt="this is a figure widget." width="185" src="../repo/logo.png"></m-figure>
+    </m-groupbox>
+    
+    <!---->
+    
+    <m-groupbox label="Groupbox 4" width="413" height="280" effect="glass">
+      <m-textbox label="Textbox 1" id="textbox1"></m-textbox>
+    </m-groupbox>
+    
+  </m-panel>
+
+</body>
+
+</html>

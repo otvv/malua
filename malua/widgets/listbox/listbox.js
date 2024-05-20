@@ -64,13 +64,17 @@ class MListBox extends MMalua {
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = `
     ${globalMaluaStyleInclude}
-    <label class="m-listbox-label"></label>
-    <select class="m-listbox" multiple>  
-    </select>  
+    <div class="m-listbox-box">
+      <label class="m-listbox-label"></label>
+      <select class="m-listbox" multiple>  
+      </select>
+    </div
    `;
 
-    // listbox element wrapper
+    // listbox element wrapper and box div
     const listboxElement = shadow.querySelector("select");
+    const boxDivElement = shadow.querySelector("div");
+
 
     // listbox label wrapper
     const listboxLabelElement = shadow.querySelector("label");

@@ -33,7 +33,7 @@ class MCheckBox extends MMalua {
           </span>
         `;
 
-    // checkbox input wrapper and box div
+    // checkbox input wrapper and box span
     const checkboxElement = shadow.querySelector("input");
     const boxSpanElement = shadow.querySelector("span");
 
