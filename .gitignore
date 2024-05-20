@@ -6,5 +6,5 @@ malua/node_modules/
 malua/*.html
 *.html
 !malua/demo.html
-!demo.html
+!docs/index.html
 .DS_store
