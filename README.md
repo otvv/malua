@@ -27,3 +27,4 @@ From a Web UI/App perspective, malua works very well. As you can see here: <a hr
 
 ![First image](https://raw.githubusercontent.com/otvv/malua/main/repo/example1.png)
 ![Second image](https://raw.githubusercontent.com/otvv/malua/main/repo/example2.png)
+![Third image](https://raw.githubusercontent.com/otvv/malua/main/repo/example3.png)
