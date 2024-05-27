@@ -9,21 +9,25 @@
 
 <hr>
 
-A simple CSS framework/UI toolkit designed to be used alongside an HTML/CSS renderer like Ultralight, Sciter, or Electron. You can also use malua alongside another framework such as Express.JS, ASP.NET, or in any web environment.
-This framework was made to be used in gaming related projects, such as trainers and GUIs. (Using Electron, ASP.NET, or an HTML Renderer). However, it can also be used for any project you feel like it is suited for.
+A simple CSS framework/UI toolkit designed to be used alongside an HTML/CSS renderer like Ultralight, Sciter, or Electron. It could also be used alongside another framework such as Express.JS, ASP.NET, or in any web environment. This framework was initially created for gaming-related projects, such as trainers and GUIs (using Electron, ASP.NET, or an HTML renderer). However, it was flexible enough to be used for any project it suited.
 
-Malua was born with a simple premise: to replace <a href="https://github.com/otvv/fgui">FGUI</a> and to be a more versatile GUI framework, easier to customize and to build a menu/UI with. As the development progressed, I decided to turn malua into a CSS framework/UI toolkit to help people build web apps with ease, without the hassle of designing their own UI or dealing with native HTML elements and forms.
+Malua was born with a simple premise: to replace <a href="https://github.com/otvv/fgui">FGUI</a> and become a more versatile GUI framework, easier to customize, and simpler to build a menu/UI with. As development progressed, the aim was to turn Malua into a CSS framework/UI toolkit to help people build web apps with ease, without the hassle of designing their own UI or dealing with native HTML elements and forms.
 
 The framework still requires you to use native HTML for some things, such as handling the page background, additional elements (headers, footers, etc.), and JavaScript for minor tasks like linking widgets or manipulating them to perform more complex operations. If you know the basics of HTML5/JS, you won't have any problems with that. After all, the widgets in the framework work just like any other HTML5 element.
 
-For a few people, malua might not be ideal since it is missing a few widgets for it to be considered a fully-fledged UI toolkit, such as TabPanels and Selectors (Menus), just to name a few. 
-_(Some of these missing widgets are going to be implemented after the release.)_
+For a few people, Malua might not be ideal since it is missing a few widgets for it to be considered a fully-fledged UI toolkit, such as TabPanels and Selectors (Menus), just to name a few. 
+_(Some of these missing widgets were planned to be implemented after the initial release.)_
 
-From a Web UI/App perspective, malua works very well. As you can see here: <a href="https://wallpaperize.vercel.app">wallpaperize!</a>
+From a Web UI/App perspective, Malua works very well. As you can see here: <a href="https://wallpaperize.vercel.app">wallpaperize!</a>
+
+<h3>Demo</h3>
+
+To see Malua in action, you can visit this <a href="#">web site</a> where you can test the toolkit's intended use.
+
 
 ***
 
-<h5>Here's some screenshots:</h5>
+<h5>Here is some screenshots of the toolkit in action:</h5>
 
 ![First image](https://raw.githubusercontent.com/otvv/malua/main/repo/example1.jpeg)
 ![Second image](https://raw.githubusercontent.com/otvv/malua/main/repo/example2.jpeg)
