@@ -9,7 +9,7 @@
 
 <hr>
 
-A simple CSS framework/UI toolkit designed to be used alongside an HTML/CSS renderer like Ultralight, Sciter, or Electron. It could also be used alongside another framework such as Express.JS, ASP.NET, or in any web environment. This framework was initially created for gaming-related projects, such as trainers and GUIs (using Electron, ASP.NET, or an HTML renderer). However, it was flexible enough to be used for any project it suited.
+A simple CSS framework/UI toolkit designed to be used alongside a HTML/CSS renderer like Ultralight, Sciter, or Electron. It could also be used alongside another framework such as Express.JS, ASP.NET, or in any web environment. This framework was initially created for gaming-related projects, such as trainers and GUIs (using Electron, ASP.NET, or a HTML renderer). However, it was flexible enough to be used for any project it suited.
 
 Malua was born with a simple premise: to replace <a href="https://github.com/otvv/fgui">FGUI</a> and become a more versatile GUI framework, easier to customize, and simpler to build a menu/UI with. As development progressed, the aim was to turn Malua into a CSS framework/UI toolkit to help people build web apps with ease, without the hassle of designing their own UI or dealing with native HTML elements and forms.
 
@@ -18,11 +18,11 @@ The framework still requires you to use native HTML for some things, such as han
 For a few people, Malua might not be ideal since it is missing a few widgets for it to be considered a fully-fledged UI toolkit, such as TabPanels and Selectors (Menus), just to name a few. 
 _(Some of these missing widgets were planned to be implemented after the initial release.)_
 
-From a Web UI/App perspective, Malua works very well. As you can see here: <a href="https://wallpaperize.vercel.app">wallpaperize!</a>
+From a Web UI/App perspective, Malua works very well. As you can see here: <a href="https://otvv.github.io/wallpaperize">wallpaperize!</a>
 
 <h3>Demo</h3>
 
-To see Malua in action, you can visit this <a href="#">web site</a> where you can test the toolkit's intended use.
+To see Malua in action, you can visit this <a href="malua/demo.html">web site</a> where you can test the toolkit.
 
 
 ***
